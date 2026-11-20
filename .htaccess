@@ -1,0 +1,51 @@
+# JAWA MART - Apache Web Server Configuration
+# Optimized for cPanel & Shared Hosting
+
+# Default Charset
+AddDefaultCharset UTF-8
+
+# Disable directory browsing
+Options -Indexes
+
+# Follow Symbolic Links
+Options +FollowSymLinks
+
+# Enable Rewrite Engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Prevent sensitive configuration file access
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^database/ - [F,L]
+</IfModule>
+
+# Block access to hidden files and folders (.git, .env, etc)
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Protect config files
+<FilesMatch "(database\.php|\.sql|\.json|\.lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Compression for performance (PRD Section 15.2)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/xml application/xhtml+xml application/rss+xml application/javascript application/x-javascript image/svg+xml
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>

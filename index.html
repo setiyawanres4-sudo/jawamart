@@ -1,0 +1,1942 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JAWA MART â€” Belanja Sembako Mudah, Hemat, dan Praktis (Preview Browser)</title>
+  <meta name="description" content="JAWA MART toko online sembako menyediakan kebutuhan pokok harian lengkap dengan harga hemat dan pengiriman cepat via WhatsApp.">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <style>
+/**
+ * JAWA MART - Main Stylesheet
+ * PRD v2.0 Design System & Palette
+ */
+
+:root {
+  --primary-green: #198754;
+  --primary-green-dark: #13653f;
+  --primary-green-light: #20c997;
+  --light-green: #e8f5e9;
+  --white: #ffffff;
+  --main-text: #212529;
+  --secondary-text: #6c757d;
+  --whatsapp-green: #25d366;
+  --whatsapp-green-dark: #1da851;
+  --border-color: #dee2e6;
+  --bg-light: #f8f9fa;
+  --accent-yellow: #ffc107;
+  --danger-red: #dc3545;
+  --danger-light: #f8d7da;
+  --info-blue: #0d6efd;
+  --info-light: #cff4fc;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --transition: all 0.25s ease-in-out;
+  --container-max: 1200px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--main-text);
+  background-color: var(--bg-light);
+  line-height: 1.5;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-green-dark);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* ========================================================
+   TOPBAR & HEADER
+   ======================================================== */
+.topbar {
+  background-color: var(--primary-green-dark);
+  color: var(--white);
+  font-size: 13px;
+  padding: 6px 0;
+}
+
+.topbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.topbar-left, .topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar a {
+  color: #d1e7dd;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topbar a:hover {
+  color: var(--white);
+}
+
+.header {
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-main {
+  padding: 14px 0;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-logo img {
+  height: 48px;
+  width: auto;
+}
+
+/* Search bar */
+.header-search {
+  flex: 1;
+  max-width: 580px;
+  position: relative;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--bg-light);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.search-form:focus-within {
+  border-color: var(--primary-green);
+  background-color: var(--white);
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  outline: none;
+  color: var(--main-text);
+}
+
+.search-btn {
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+}
+
+.search-btn:hover {
+  background-color: var(--primary-green-dark);
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background-color: var(--light-green);
+  color: var(--primary-green);
+  font-size: 18px;
+  transition: var(--transition);
+}
+
+.header-icon-btn:hover {
+  background-color: var(--primary-green);
+  color: var(--white);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: var(--danger-red);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: var(--radius-pill);
+  padding: 0 4px;
+}
+
+.btn-wa-header {
+  background-color: var(--whatsapp-green);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 13.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 6px rgba(37, 211, 102, 0.3);
+}
+
+.btn-wa-header:hover {
+  background-color: var(--whatsapp-green-dark);
+  color: var(--white);
+}
+
+/* Navigation Menu */
+.navbar {
+  background-color: var(--white);
+  border-top: 1px solid var(--border-color);
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 28px;
+  overflow-x: auto;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 12px 2px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--main-text);
+  border-bottom: 2.5px solid transparent;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--primary-green);
+  border-bottom-color: var(--primary-green);
+}
+
+/* Mobile Toggle */
+.mobile-nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--main-text);
+  cursor: pointer;
+}
+
+/* ========================================================
+   HERO / BANNER CAROUSEL
+   ======================================================== */
+.hero-slider-section {
+  padding: 24px 0 10px;
+}
+
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  background-color: var(--primary-green-dark);
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--main-text);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-pill);
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-btn:hover {
+  background: var(--white);
+  color: var(--primary-green);
+}
+
+.slider-btn.prev { left: 16px; }
+.slider-btn.next { right: 16px; }
+
+.slider-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.slider-dot.active {
+  background: var(--white);
+  width: 24px;
+}
+
+/* ========================================================
+   SECTION HEADINGS & BADGES
+   ======================================================== */
+.section {
+  padding: 36px 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--main-text);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 45px;
+  height: 3.5px;
+  background-color: var(--primary-green);
+  border-radius: var(--radius-pill);
+  margin-top: 6px;
+}
+
+.section-subtitle {
+  color: var(--secondary-text);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.view-all-link {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-green);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.view-all-link:hover {
+  transform: translateX(3px);
+}
+
+/* ========================================================
+   CATEGORIES GRID
+   ======================================================== */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+}
+
+.category-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 10px;
+  text-align: center;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.category-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-green);
+  box-shadow: var(--shadow-md);
+}
+
+.category-icon-box {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-pill);
+  background-color: var(--light-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.category-icon-box img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.category-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--main-text);
+  line-height: 1.3;
+}
+
+.category-count {
+  font-size: 11.5px;
+  color: var(--secondary-text);
+  margin-top: 4px;
+}
+
+/* ========================================================
+   PRODUCT CARD
+   ======================================================== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #c3e6cb;
+}
+
+.product-thumb-wrap {
+  position: relative;
+  background-color: #fafbfc;
+  padding-top: 100%; /* 1:1 Aspect Ratio (PRD Section 7.1) */
+  overflow: hidden;
+}
+
+.product-thumb-wrap img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 12px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-thumb-wrap img {
+  transform: scale(1.05);
+}
+
+.badge-discount {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--danger-red);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  z-index: 2;
+}
+
+.badge-stock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: var(--radius-sm);
+  z-index: 2;
+}
+
+.badge-out-of-stock {
+  background: #343a40;
+  color: var(--white);
+}
+
+.badge-low-stock {
+  background: var(--accent-yellow);
+  color: #212529;
+}
+
+.product-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-category {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--secondary-text);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.product-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: var(--main-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 40px;
+}
+
+.product-title a {
+  color: inherit;
+}
+
+.product-title a:hover {
+  color: var(--primary-green);
+}
+
+.product-unit {
+  font-size: 12px;
+  color: var(--secondary-text);
+  margin-bottom: 8px;
+}
+
+.product-prices {
+  margin-top: auto;
+  margin-bottom: 12px;
+}
+
+.product-price-current {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--primary-green);
+}
+
+.product-price-normal {
+  font-size: 12px;
+  color: var(--secondary-text);
+  text-decoration: line-through;
+  margin-left: 6px;
+}
+
+.product-actions {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.btn-add-cart {
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: var(--transition);
+}
+
+.btn-add-cart:hover:not(:disabled) {
+  background-color: var(--primary-green-dark);
+}
+
+.btn-add-cart:disabled {
+  background-color: #ced4da;
+  cursor: not-allowed;
+  color: #6c757d;
+}
+
+.btn-detail-link {
+  background: var(--light-green);
+  color: var(--primary-green);
+  border: 1px solid #c3e6cb;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-detail-link:hover {
+  background: var(--primary-green);
+  color: var(--white);
+}
+
+/* ========================================================
+   FEATURES / ADVANTAGES
+   ======================================================== */
+.features-section {
+  background: var(--white);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 40px 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.feature-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.feature-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background-color: var(--light-green);
+  color: var(--primary-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.feature-info h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--main-text);
+  margin-bottom: 4px;
+}
+
+.feature-info p {
+  font-size: 13px;
+  color: var(--secondary-text);
+  line-height: 1.4;
+}
+
+/* ========================================================
+   CART & QUANTITY CONTROLS
+   ======================================================== */
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.qty-btn {
+  background: var(--bg-light);
+  border: none;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--main-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.qty-btn:hover {
+  background: var(--light-green);
+  color: var(--primary-green);
+}
+
+.qty-input {
+  width: 44px;
+  height: 32px;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  background: var(--white);
+  color: var(--main-text);
+}
+
+.cart-table-wrap {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.cart-table th {
+  background: #f8faf9;
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--secondary-text);
+  text-transform: uppercase;
+  border-bottom: 1.5px solid var(--border-color);
+  text-align: left;
+}
+
+.cart-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.cart-item-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cart-item-img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  object-fit: contain;
+  background: #fafbfc;
+  padding: 4px;
+}
+
+.btn-remove-item {
+  color: var(--danger-red);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px;
+  transition: var(--transition);
+}
+
+.btn-remove-item:hover {
+  opacity: 0.7;
+}
+
+/* Summary Card */
+.order-summary-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.order-summary-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 14.5px;
+}
+
+.summary-total {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary-green);
+  border-top: 1.5px dashed var(--border-color);
+  padding-top: 14px;
+  margin-top: 14px;
+}
+
+/* ========================================================
+   FORMS & INPUTS
+   ======================================================== */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--main-text);
+}
+
+.form-label .required {
+  color: var(--danger-red);
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 14.5px;
+  outline: none;
+  transition: var(--transition);
+  background: var(--white);
+  color: var(--main-text);
+}
+
+.form-control:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 85px;
+}
+
+.btn-primary {
+  background-color: var(--primary-green);
+  color: var(--white);
+  border: none;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-green-dark);
+  color: var(--white);
+}
+
+.btn-wa-checkout {
+  background-color: var(--whatsapp-green);
+  color: var(--white);
+  border: none;
+  padding: 14px 24px;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  transition: var(--transition);
+}
+
+.btn-wa-checkout:hover {
+  background-color: var(--whatsapp-green-dark);
+}
+
+/* ========================================================
+   PAGINATION
+   ======================================================== */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 36px;
+}
+
+.page-item {
+  display: inline-block;
+}
+
+.page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  color: var(--main-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.page-link:hover, .page-item.active .page-link {
+  background-color: var(--primary-green);
+  color: var(--white);
+  border-color: var(--primary-green);
+}
+
+/* ========================================================
+   FLOATING WHATSAPP BUTTON (PRD Section 1.4)
+   ======================================================== */
+.floating-wa-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: var(--whatsapp-green);
+  color: var(--white);
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+  z-index: 999;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-wa-btn:hover {
+  transform: scale(1.1);
+  color: var(--white);
+}
+
+/* ========================================================
+   FOOTER
+   ======================================================== */
+.footer {
+  background-color: #17231c;
+  color: #adb5bd;
+  font-size: 14px;
+  padding: 48px 0 20px;
+  margin-top: 50px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.footer-brand img {
+  height: 48px;
+  filter: brightness(0) invert(1);
+  margin-bottom: 14px;
+}
+
+.footer-title {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.footer-title::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2.5px;
+  background: var(--primary-green);
+  margin-top: 6px;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #adb5bd;
+}
+
+.footer-links a:hover {
+  color: var(--white);
+  padding-left: 4px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: #6c757d;
+}
+
+/* ========================================================
+   TOAST / FLASH NOTIFICATIONS
+   ======================================================== */
+.flash-alert {
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flash-alert.success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+}
+
+.flash-alert.danger {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}
+
+/* ========================================================
+   RESPONSIVE
+   ======================================================== */
+@media (max-width: 991px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    display: none;
+  }
+  .header-row {
+    flex-wrap: wrap;
+  }
+  .header-search {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .mobile-nav-toggle {
+    display: block;
+  }
+  .navbar {
+    display: none;
+  }
+  .navbar.open {
+    display: block;
+  }
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .nav-link {
+    width: 100%;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  .floating-wa-btn {
+    bottom: 18px;
+    right: 18px;
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+</style>
+  <style>
+    <!-- Preview notification bar -->
+    .preview-bar {
+      background: #0f172a;
+      color: #94a3b8;
+      font-size: 13px;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 2px solid #198754;
+    }
+    .preview-badge {
+      background: #198754;
+      color: #fff;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+    .preview-btn {
+      background: #334155;
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .preview-btn:hover { background: #475569; color: #fff; }
+    .preview-btn-reset {
+      background: #198754;
+      color: #fff;
+    }
+    .preview-btn-reset:hover { background: #157347; }
+    
+    /* Cart Modal / Drawer */
+    .cart-drawer-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .cart-drawer-overlay.active { display: flex; }
+    .cart-drawer {
+      background: #fff;
+      width: 100%;
+      max-width: 440px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+      animation: slideIn 0.3s ease;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+    .cart-drawer-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid #dee2e6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cart-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    .cart-drawer-footer {
+      padding: 20px;
+      border-top: 1px solid #dee2e6;
+      background: #f8fafc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preview Header Bar -->
+  <div class="preview-bar">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span class="preview-badge">Demo Mode</span>
+      <span>Toko Online Sembako JAWA MART â€” Pratinjau Interaktif</span>
+    </div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button type="button" onclick="forceResetToRealPhotos()" class="preview-btn preview-btn-reset" title="Tampilkan foto nyata sembako terbaru & bersihkan gambar uji coba">
+        ðŸ”„ Tampilkan Foto Sembako Nyata
+      </button>
+      <a href="admin-preview.html" class="preview-btn" target="_blank">
+        âš™ï¸ Buka Panel Admin
+      </a>
+    </div>
+  </div>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <span>ðŸ•’ Senin - Minggu: 07.00 - 20.00 WIB</span>
+        <span>ðŸ“ Melayani Pengiriman Cepat ke Rumah Anda</span>
+      </div>
+      <div class="topbar-right">
+        <a href="https://wa.me/6287812122735" target="_blank" rel="noopener">
+          <span>ðŸ’¬ Layanan WhatsApp: <strong>+62 878-1212-2735</strong></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Main -->
+  <header class="header">
+    <div class="header-main">
+      <div class="container">
+        <div class="header-row">
+          
+          <!-- Brand Logo -->
+          <a href="preview.html" class="brand-logo" title="JAWA MART">
+            <img src="assets/images/logo.png" alt="JAWA MART" style="height: 52px; width: auto; object-fit: contain;">
+          </a>
+
+          <!-- Search Bar -->
+          <div class="header-search">
+            <form onsubmit="event.preventDefault(); searchProducts();" class="search-form">
+              <input type="text" id="searchInput" class="search-input" placeholder="Cari sembako (beras, minyak, gula, mie...)" autocomplete="off">
+              <button type="submit" class="search-btn" aria-label="Cari">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+                <span>Cari</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Header Actions -->
+          <div class="header-actions">
+            <!-- Cart Icon Button -->
+            <button type="button" class="header-icon-btn" onclick="openCartDrawer()" title="Buka Keranjang Belanja" style="border: none; cursor: pointer;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </svg>
+              <span class="cart-badge" style="display: none;">0</span>
+            </button>
+
+            <!-- WhatsApp Direct Button -->
+            <a href="https://wa.me/6287812122735?text=Halo%20JAWA%20MART%2C%20saya%20ingin%20bertanya%20seputar%20produk%20sembako." target="_blank" rel="noopener" class="btn-wa-header" title="Chat WhatsApp Toko">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.016-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+              </svg>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar" id="mainNavbar">
+      <div class="container">
+        <ul class="nav-list">
+          <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+          <li><a href="#kategori" class="nav-link">Kategori Sembako</a></li>
+          <li><a href="#rekomendasi" class="nav-link">Produk Rekomendasi</a></li>
+          <li><a href="#katalog" class="nav-link">Katalog Lengkap</a></li>
+          <li><a href="#keunggulan" class="nav-link">Keunggulan</a></li>
+          <li><a href="#kontak" class="nav-link">Kontak &amp; Alamat</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Banner Slider -->
+  <section class="hero-slider-section" id="beranda">
+    <div class="container">
+      <div class="slider-container">
+        <div class="slider-track" id="heroSliderTrack">
+          <div class="slide">
+            <a href="#katalog">
+              <img src="uploads/banners/banner-1.svg" alt="Promo Sembako JAWA MART">
+            </a>
+          </div>
+          <div class="slide">
+            <a href="#katalog">
+              <img src="uploads/banners/banner-2.svg" alt="Gratis Ongkir JAWA MART">
+            </a>
+          </div>
+        </div>
+
+        <button class="slider-btn prev" aria-label="Banner Sebelumnya">&lt;</button>
+        <button class="slider-btn next" aria-label="Banner Selanjutnya">&gt;</button>
+        <div class="slider-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Keunggulan Toko Bar -->
+  <section class="features-section" id="keunggulan">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon">ðŸšš</div>
+          <div class="feature-info">
+            <h4>Pengiriman Cepat</h4>
+            <p>Sembako diantar langsung ke rumah dengan aman dan terjaga kesegarannya.</p>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">ðŸ’°</div>
+          <div class="feature-info">
+            <h4>Harga Hemat &amp; Grosir</h4>
+            <p>Kualitas terjamin dengan harga bersahabat untuk belanja harian keluarga.</p>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">ðŸ’¬</div>
+          <div class="feature-info">
+            <h4>Checkout WhatsApp</h4>
+            <p>Pemesanan otomatis terhubung ke WhatsApp resmi JAWA MART tanpa ribet registrasi.</p>
+          </div>
+        </div>
+        <div class="feature-box">
+          <div class="feature-icon">âœ¨</div>
+          <div class="feature-info">
+            <h4>100% Produk Asli</h4>
+            <p>Beras pulen, minyak jernih, gula, telur dan bumbu makanan pilihan terpercaya.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kategori Sembako Grid (PRD Section 4.3) -->
+  <section class="section" id="kategori">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Kategori Sembako</h2>
+          <p class="section-subtitle">Temukan bahan pokok sehari-hari sesuai kebutuhan Anda</p>
+        </div>
+      </div>
+
+      <div class="categories-grid" id="categoryContainer">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Produk Rekomendasi (PRD Section 4.1) -->
+  <section class="section" id="rekomendasi" style="background-color: #ffffff; padding: 40px 0; border-top: 1px solid #eef2f5; border-bottom: 1px solid #eef2f5;">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Produk Rekomendasi</h2>
+          <p class="section-subtitle">Pilihan sembako paling dicari dengan promo harga terbaik</p>
+        </div>
+      </div>
+
+      <div class="products-grid" id="featuredProductsContainer">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Katalog Lengkap Sembako (PRD Section 4.2) -->
+  <section class="section" id="katalog">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Katalog Lengkap Sembako</h2>
+          <p class="section-subtitle">Daftar seluruh kebutuhan sembako segar dan rumah tangga siap pesan</p>
+        </div>
+        <div>
+          <select id="filterCategorySelect" class="form-control" style="width: auto; padding: 7px 14px;" onchange="filterByCategory(this.value)">
+            <option value="all">Semua Kategori</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="products-grid" id="catalogProductsContainer">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontak & Alamat -->
+  <section class="section" id="kontak" style="background-color: #ffffff; border-top: 1px solid #dee2e6; padding: 45px 0;">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Kontak &amp; Alamat JAWA MART</h2>
+          <p class="section-subtitle">Layanan pelanggan cepat dan informasi toko sembako</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <div style="background: #f8faf9; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+          <h4 style="font-size: 16px; font-weight: 800; color: #198754; margin-bottom: 12px;">ðŸ“ Lokasi Toko &amp; Gudang</h4>
+          <p style="color: #475569; line-height: 1.6; margin-bottom: 16px;">
+            Jl. Pasar Tradisional &amp; Sembako Jaya No. 88, Jawa, Indonesia
+          </p>
+          <div style="font-size: 13.5px; color: #64748b;">
+            ðŸ•’ Jam Layanan: <strong>07.00 - 20.00 WIB (Senin - Minggu)</strong>
+          </div>
+        </div>
+
+        <div style="background: #f8faf9; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+          <h4 style="font-size: 16px; font-weight: 800; color: #198754; margin-bottom: 12px;">ðŸ’¬ WhatsApp Resmi Toko</h4>
+          <p style="color: #475569; line-height: 1.6; margin-bottom: 16px;">
+            Menerima pemesanan langsung, informasi ketersediaan stok, dan konsultasi sembako.
+          </p>
+          <a href="https://wa.me/6287812122735" target="_blank" rel="noopener" class="btn-wa-header" style="font-size: 15px; padding: 10px 20px;">
+            Chat WhatsApp: +62 878-1212-2735
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 <strong>JAWA MART</strong>. Seluruh Hak Cipta Dilindungi. Belanja Sembako Mudah, Hemat, dan Praktis.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Action Button -->
+  <a href="https://wa.me/6287812122735?text=Halo%20JAWA%20MART%2C%20saya%20ingin%20belanja%20sembako." 
+     class="floating-wa-btn" 
+     target="_blank" 
+     rel="noopener" 
+     title="Hubungi Toko via WhatsApp (+62 878-1212-2735)">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.016-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+    </svg>
+  </a>
+
+  <!-- Cart Drawer Overlay -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="if(event.target === this) closeCartDrawer()">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3 style="font-size: 17px; font-weight: 800; color: #212529;">Keranjang Belanja</h3>
+        <button type="button" onclick="closeCartDrawer()" style="background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+      </div>
+
+      <div class="cart-drawer-body" id="cartDrawerItems">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div class="cart-drawer-footer">
+        <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px;">
+          <span style="color: #64748b;">Subtotal Barang:</span>
+          <strong id="drawerSubtotal" style="color: #212529;">Rp 0</strong>
+        </div>
+        <div style="font-size: 12px; color: #198754; margin-bottom: 16px;">
+          âœ“ Pesanan akan langsung disusun ke format pesan WhatsApp toko.
+        </div>
+        <button type="button" class="btn-wa-checkout" onclick="openCheckoutModal()">
+          <span>Lanjut Checkout via WhatsApp &rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="cart-drawer-overlay" id="checkoutModalOverlay" style="justify-content: center;" onclick="if(event.target === this) closeCheckoutModal()">
+    <div style="background: #fff; width: 100%; max-width: 520px; border-radius: 12px; padding: 28px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #dee2e6;">
+        <h3 style="font-size: 18px; font-weight: 800; color: #212529;">Isi Data Pengiriman</h3>
+        <button type="button" onclick="closeCheckoutModal()" style="background: none; border: none; font-size: 22px; cursor: pointer;">&times;</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); submitWhatsAppOrder();">
+        <div class="form-group">
+          <label class="form-label" for="custName">Nama Lengkap <span style="color:red;">*</span></label>
+          <input type="text" id="custName" class="form-control" placeholder="Contoh: Ibu Siti Rahayu" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="custPhone">Nomor WhatsApp <span style="color:red;">*</span></label>
+          <input type="tel" id="custPhone" class="form-control" placeholder="Contoh: 081234567890" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="custAddress">Alamat Pengiriman Lengkap <span style="color:red;">*</span></label>
+          <textarea id="custAddress" class="form-control" rows="3" placeholder="Alamat rumah, jalan, RT/RW, patokan..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="custNote">Catatan Tambahan (Opsional)</label>
+          <input type="text" id="custNote" class="form-control" placeholder="Contoh: Titip satpam / telepon sebelum sampai">
+        </div>
+
+        <div style="background: #e8f5e9; border: 1px solid #c3e6cb; border-radius: 8px; padding: 12px; margin-bottom: 18px; font-size: 13px; color: #0f5132;">
+          ðŸ’¬ Mengklik tombol di bawah akan membuka aplikasi WhatsApp Anda dengan rincian pesanan lengkap yang siap dikirim ke nomor resmi JAWA MART.
+        </div>
+
+        <button type="submit" class="btn-wa-checkout">
+          <span>Kirim Pesanan ke WhatsApp Toko &rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/cart.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Data Produk Sembako Awal
+    const sembakoCategories = [
+      { id: 1, name: 'Beras dan Padi-padian', slug: 'beras', image: 'uploads/categories/beras.svg', count: 1 },
+      { id: 2, name: 'Minyak Goreng', slug: 'minyak', image: 'uploads/categories/minyak.svg', count: 1 },
+      { id: 3, name: 'Gula dan Garam', slug: 'gula-garam', image: 'uploads/categories/gula-garam.svg', count: 2 },
+      { id: 4, name: 'Tepung', slug: 'tepung', image: 'uploads/categories/tepung.svg', count: 1 },
+      { id: 5, name: 'Mie Instan', slug: 'mie-instan', image: 'uploads/categories/mie-instan.svg', count: 1 },
+      { id: 6, name: 'Telur', slug: 'telur', image: 'uploads/categories/telur.svg', count: 1 },
+      { id: 7, name: 'Susu dan Minuman', slug: 'susu-minuman', image: 'uploads/categories/susu-minuman.svg', count: 2 },
+      { id: 8, name: 'Bumbu Dapur', slug: 'bumbu', image: 'uploads/categories/bumbu.svg', count: 1 },
+      { id: 9, name: 'Makanan Kaleng', slug: 'makanan-kaleng', image: 'uploads/categories/makanan-kaleng.svg', count: 1 },
+      { id: 10, name: 'Kebutuhan Rumah Tangga', slug: 'kebutuhan-rumah', image: 'uploads/categories/kebutuhan-rumah.svg', count: 1 }
+    ];
+
+    const defaultSembakoProducts = [
+      { id: 1, catId: 1, catName: 'Beras & Padi', sku: 'BR-PRM-005', name: 'Beras Premium Ramos Wangi 5 Kg', price: 69500, normalPrice: 75000, unit: 'Karung', stock: 45, image: 'uploads/products/beras-premium-5kg.jpg', isFeatured: true },
+      { id: 2, catId: 2, catName: 'Minyak Goreng', sku: 'MY-BIM-002', name: 'Minyak Goreng Sawit 2 Liter', price: 34500, normalPrice: 38000, unit: 'Pcs', stock: 80, image: 'uploads/products/minyak-goreng-2l.jpg', isFeatured: true },
+      { id: 3, catId: 3, catName: 'Gula & Garam', sku: 'GL-GLK-001', name: 'Gula Pasir Kristal Putih 1 Kg', price: 17200, normalPrice: 18500, unit: 'Pack', stock: 60, image: 'uploads/products/gula-pasir-1kg.jpg', isFeatured: true },
+      { id: 4, catId: 4, catName: 'Tepung', sku: 'TP-SGT-001', name: 'Tepung Terigu Serbaguna 1 Kg', price: 13000, normalPrice: 14500, unit: 'Pack', stock: 40, image: 'uploads/products/tepung-terigu-1kg.jpg', isFeatured: true },
+      { id: 5, catId: 5, catName: 'Mie Instan', sku: 'MI-IND-001', name: 'Mie Instan Goreng Spesial 85g', price: 3100, normalPrice: 3500, unit: 'Pcs', stock: 250, image: 'uploads/products/indomie-goreng.jpg', isFeatured: true },
+      { id: 6, catId: 6, catName: 'Telur', sku: 'TL-AYM-001', name: 'Telur Ayam Negeri Fresh 1 Kg', price: 28000, normalPrice: 30000, unit: 'Kg', stock: 35, image: 'uploads/products/telur-ayam-1kg.jpg', isFeatured: true },
+      { id: 7, catId: 7, catName: 'Susu & Minuman', sku: 'SS-FFG-001', name: 'Susu Kental Manis 370g', price: 12500, normalPrice: 14000, unit: 'Kaleng', stock: 50, image: 'uploads/products/susu-kental-manis.jpg', isFeatured: true },
+      { id: 8, catId: 3, catName: 'Gula & Garam', sku: 'GR-KPL-001', name: 'Garam Dapur Beryodium Halus 250g', price: 4500, normalPrice: 4500, unit: 'Pack', stock: 90, image: 'uploads/products/garam-dapur-1kg.jpg', isFeatured: false },
+      { id: 9, catId: 8, catName: 'Bumbu Dapur', sku: 'BM-KCP-520', name: 'Kecap Manis Tradisional 520ml', price: 20500, normalPrice: 23000, unit: 'Botol', stock: 45, image: 'uploads/products/kecap-manis-abc.jpg', isFeatured: true },
+      { id: 10, catId: 9, catName: 'Makanan Kaleng', sku: 'MK-ABC-425', name: 'Ikan Sarden Saus Tomat Segar 425g', price: 23000, normalPrice: 25000, unit: 'Kaleng', stock: 40, image: 'uploads/products/sarden-abc.jpg', isFeatured: true },
+      { id: 11, catId: 10, catName: 'Kebutuhan Rumah', sku: 'RT-SNL-700', name: 'Sabun Cuci Piring Jeruk Nipis 700ml', price: 14900, normalPrice: 16500, unit: 'Pcs', stock: 65, image: 'uploads/products/sabun-cuci-piring.jpg', isFeatured: false },
+      { id: 12, catId: 7, catName: 'Susu & Minuman', sku: 'MN-SRW-025', name: 'Teh Celup Wangi Alami Isi 25', price: 8500, normalPrice: 8500, unit: 'Pack', stock: 60, image: 'uploads/products/teh-celup-kotak.jpg', isFeatured: false }
+    ];
+
+    let sembakoProducts = [...defaultSembakoProducts];
+
+    const REAL_PHOTO_VERSION = "v3.0_real_jpg_clean";
+    try {
+      const currentVer = localStorage.getItem('JAWAMART_PHOTO_VER');
+      const savedProds = localStorage.getItem('JAWAMART_PRODUCTS');
+      let parsed = [];
+      if (savedProds) {
+        parsed = JSON.parse(savedProds);
+      }
+      
+      // Deteksi jika masih ada gambar uji coba baju / svg lama
+      const hasOldSvgOrDress = !parsed || parsed.length === 0 || parsed.some(p => !p.image || p.image.endsWith('.svg') || p.image.includes('data:image'));
+
+      if (currentVer !== REAL_PHOTO_VERSION || hasOldSvgOrDress) {
+        // Upgrade otomatis ke foto asli produk sembako dan bersihkan cache lama
+        sembakoProducts = [...defaultSembakoProducts];
+        localStorage.setItem('JAWAMART_PRODUCTS', JSON.stringify(sembakoProducts));
+        localStorage.setItem('JAWAMART_PHOTO_VER', REAL_PHOTO_VERSION);
+      } else {
+        sembakoProducts = parsed;
+      }
+    } catch(e) {
+      sembakoProducts = [...defaultSembakoProducts];
+    }
+
+    function forceResetToRealPhotos() {
+      localStorage.removeItem('JAWAMART_PRODUCTS');
+      localStorage.setItem('JAWAMART_PHOTO_VER', REAL_PHOTO_VERSION);
+      sembakoProducts = [...defaultSembakoProducts];
+      localStorage.setItem('JAWAMART_PRODUCTS', JSON.stringify(sembakoProducts));
+      renderFeaturedProducts();
+      renderCatalogProducts();
+      alert('Foto produk sembako asli JAWA MART berhasil dimuat ulang dan diperbarui!');
+    }
+
+    function formatRupiah(num) {
+      return 'Rp ' + Number(num).toLocaleString('id-ID');
+    }
+
+    // Render Categories
+    function renderCategories() {
+      const container = document.getElementById('categoryContainer');
+      const select = document.getElementById('filterCategorySelect');
+      let html = '';
+
+      sembakoCategories.forEach(cat => {
+        html += `
+          <div class="category-card" onclick="filterByCategory(${cat.id})" style="cursor: pointer;">
+            <div class="category-icon-box">
+              <img src="${cat.image}" alt="${cat.name}">
+            </div>
+            <span class="category-name">${cat.name}</span>
+            <span class="category-count">${cat.count} Produk</span>
+          </div>
+        `;
+
+        const opt = document.createElement('option');
+        opt.value = cat.id;
+        opt.textContent = cat.name;
+        select.appendChild(opt);
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Render Product Cards
+    function createProductCardHtml(p) {
+      const hasDiscount = p.price < p.normalPrice;
+      const discountPercent = hasDiscount ? Math.round(((p.normalPrice - p.price) / p.normalPrice) * 100) : 0;
+      
+      return `
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            ${hasDiscount ? `<span class="badge-discount">-${discountPercent}%</span>` : ''}
+            <img src="${p.image}" alt="${p.name}">
+          </div>
+          <div class="product-body">
+            <span class="product-category">${p.catName}</span>
+            <h3 class="product-title" title="${p.name}">
+              <a href="javascript:void(0)" onclick="openProductQuickView(${p.id})">${p.name}</a>
+            </h3>
+            <div class="product-unit">Satuan: <strong>${p.unit}</strong> | Stok: <strong>${p.stock}</strong></div>
+            <div class="product-prices">
+              <span class="product-price-current">${formatRupiah(p.price)}</span>
+              ${hasDiscount ? `<span class="product-price-normal">${formatRupiah(p.normalPrice)}</span>` : ''}
+            </div>
+            <div class="product-actions" style="grid-template-columns: 1fr;">
+              <button type="button" class="btn-add-cart" onclick='JawaCart.addItem(${JSON.stringify(p)}, 1)'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5z"/>
+                </svg>
+                <span>+ Masukkan Keranjang</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProducts() {
+      const featuredContainer = document.getElementById('featuredProductsContainer');
+      const catalogContainer = document.getElementById('catalogProductsContainer');
+
+      const featured = sembakoProducts.filter(p => p.isFeatured);
+      featuredContainer.innerHTML = featured.map(createProductCardHtml).join('');
+      catalogContainer.innerHTML = sembakoProducts.map(createProductCardHtml).join('');
+    }
+
+    function filterByCategory(catId) {
+      const catalogContainer = document.getElementById('catalogProductsContainer');
+      const select = document.getElementById('filterCategorySelect');
+      select.value = catId;
+
+      let filtered = sembakoProducts;
+      if (catId !== 'all') {
+        filtered = sembakoProducts.filter(p => p.catId == catId);
+      }
+
+      if (filtered.length > 0) {
+        catalogContainer.innerHTML = filtered.map(createProductCardHtml).join('');
+      } else {
+        catalogContainer.innerHTML = '<div style="grid-column: 1/-1; padding: 30px; text-align: center; color: #64748b;">Belum ada produk untuk kategori ini.</div>';
+      }
+
+      document.getElementById('katalog').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function searchProducts() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      if (!query) return;
+
+      const catalogContainer = document.getElementById('catalogProductsContainer');
+      const filtered = sembakoProducts.filter(p => p.name.toLowerCase().includes(query) || p.catName.toLowerCase().includes(query) || p.sku.toLowerCase().includes(query));
+
+      if (filtered.length > 0) {
+        catalogContainer.innerHTML = filtered.map(createProductCardHtml).join('');
+      } else {
+        catalogContainer.innerHTML = `<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: #64748b;">Tidak ada produk sembako ditemukan untuk kata kunci "${query}".</div>`;
+      }
+      document.getElementById('katalog').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Drawer Cart Functions
+    function openCartDrawer() {
+      renderCartDrawerItems();
+      document.getElementById('cartDrawerOverlay').classList.add('active');
+    }
+
+    function closeCartDrawer() {
+      document.getElementById('cartDrawerOverlay').classList.remove('active');
+    }
+
+    function renderCartDrawerItems() {
+      const items = JawaCart.getItems();
+      const container = document.getElementById('cartDrawerItems');
+      const subtotalEl = document.getElementById('drawerSubtotal');
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 50px 10px; color: #64748b;">
+            <div style="font-size: 40px; margin-bottom: 10px;">ðŸ›’</div>
+            <div style="font-weight: 700; color: #212529;">Keranjang Masih Kosong</div>
+            <p style="font-size: 13px; margin-top: 4px;">Pilih produk sembako favorit Anda dan masukkan ke keranjang.</p>
+          </div>
+        `;
+        subtotalEl.textContent = 'Rp 0';
+        return;
+      }
+
+      let subtotal = 0;
+      let html = '';
+
+      items.forEach(item => {
+        const itemSub = item.price * item.quantity;
+        subtotal += itemSub;
+
+        html += `
+          <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #f1f5f9;">
+            <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; border-radius: 6px; border: 1px solid #e2e8f0; padding: 2px;">
+            <div style="flex: 1; min-width: 0;">
+              <div style="font-weight: 700; font-size: 13.5px; color: #212529; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.name}</div>
+              <div style="font-size: 12px; color: #198754; font-weight: 600;">${formatRupiah(item.price)} / ${item.unit}</div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px;">
+                <div class="qty-control" style="height: 28px;">
+                  <button type="button" class="qty-btn" style="width: 26px; height: 26px;" onclick="JawaCart.updateQuantity(${item.id}, ${item.quantity - 1}); renderCartDrawerItems();">-</button>
+                  <input type="text" class="qty-input" style="width: 32px; height: 26px; font-size: 12px;" value="${item.quantity}" readonly>
+                  <button type="button" class="qty-btn" style="width: 26px; height: 26px;" onclick="JawaCart.updateQuantity(${item.id}, ${item.quantity + 1}); renderCartDrawerItems();">+</button>
+                </div>
+                <button type="button" onclick="JawaCart.removeItem(${item.id}); renderCartDrawerItems();" style="border: none; background: none; color: #dc3545; font-size: 12px; cursor: pointer;">Hapus</button>
+              </div>
+            </div>
+            <div style="font-weight: 700; font-size: 14px; color: #198754;">
+              ${formatRupiah(itemSub)}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      subtotalEl.textContent = formatRupiah(subtotal);
+    }
+
+    // Checkout Functions
+    function openCheckoutModal() {
+      const items = JawaCart.getItems();
+      if (items.length === 0) {
+        alert('Keranjang belanja Anda masih kosong.');
+        return;
+      }
+      closeCartDrawer();
+      document.getElementById('checkoutModalOverlay').classList.add('active');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModalOverlay').classList.remove('active');
+    }
+
+    function submitWhatsAppOrder() {
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      const note = document.getElementById('custNote').value.trim();
+
+      const items = JawaCart.getItems();
+      if (items.length === 0) return;
+
+      const randomCode = 'JM-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+      let subtotal = 0;
+      let itemsListText = '';
+
+      items.forEach(item => {
+        const itemSub = item.price * item.quantity;
+        subtotal += itemSub;
+        itemsListText += `â€¢ ${item.name} â€” ${item.quantity} ${item.unit} Ã— ${formatRupiah(item.price)} = ${formatRupiah(itemSub)}\n`;
+      });
+
+      const shipping = subtotal >= 150000 ? 0 : 10000;
+      const total = subtotal + shipping;
+
+      let msg = `Halo *JAWA MART*, saya ingin melakukan pemesanan dengan rincian berikut.\n\n`;
+      msg += `*Kode Pesanan:* ${randomCode}\n\n`;
+      msg += `*Nama:* ${name}\n`;
+      msg += `*Nomor WhatsApp:* ${phone}\n`;
+      msg += `*Alamat Pengiriman:* ${address}\n\n`;
+      msg += `*Daftar Produk:*\n${itemsListText}\n`;
+      msg += `*Subtotal:* ${formatRupiah(subtotal)}\n`;
+      msg += `*Ongkir:* ${shipping === 0 ? 'GRATIS' : formatRupiah(shipping)}\n`;
+      msg += `*Total:* *${formatRupiah(total)}*\n\n`;
+
+      if (note) {
+        msg += `*Catatan:* ${note}\n\n`;
+      }
+      msg += `Mohon konfirmasi pesanan saya. Terima kasih.`;
+
+      const waUrl = `https://wa.me/6287812122735?text=` + encodeURIComponent(msg);
+      
+      // Kosongkan keranjang setelah order
+      JawaCart.clear();
+      closeCheckoutModal();
+
+      // Buka WhatsApp
+      window.open(waUrl, '_blank');
+      alert(`Pesanan #${randomCode} berhasil dibuat! WhatsApp telah dibuka untuk konfirmasi ke toko.`);
+    }
+
+    // Render Hero Banners dari Storage jika ada perubahan di Admin Dashboard
+    function renderHeroBanners() {
+      const track = document.getElementById('heroSliderTrack');
+      if (!track) return;
+
+      let banners = [
+        { title: 'Belanja Sembako Hemat, Langsung Antar ke Rumah!', btnLink: '#katalog', image: 'uploads/banners/banner-1.svg', status: 1 },
+        { title: 'Pesan Mudah & Praktis Cukup via WhatsApp', btnLink: '#katalog', image: 'uploads/banners/banner-2.svg', status: 1 }
+      ];
+
+      try {
+        const saved = localStorage.getItem('JAWAMART_BANNERS');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            banners = parsed.filter(b => b.status === 1);
+          }
+        }
+      } catch(e) {}
+
+      if (banners.length === 0) {
+        const sec = document.getElementById('beranda');
+        if (sec) sec.style.display = 'none';
+        return;
+      }
+
+      track.innerHTML = banners.map(b => `
+        <div class="slide">
+          <a href="${b.btnLink || '#katalog'}">
+            <img src="${b.image}" alt="${b.title || 'Promo Sembako JAWA MART'}" onerror="this.src='uploads/banners/banner-1.svg'">
+          </a>
+        </div>
+      `).join('');
+    }
+
+    // Init Page
+    document.addEventListener('DOMContentLoaded', () => {
+      renderHeroBanners();
+      renderCategories();
+      renderProducts();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,2583 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Administrator JAWA MART (Demo Interaktif)</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <style>
+/**
+ * JAWA MART - Admin Dashboard Stylesheet
+ * Responsive, Modern, Minimalist
+ */
+
+:root {
+  --admin-primary: #198754;
+  --admin-primary-dark: #0f5132;
+  --admin-sidebar-bg: #1e293b;
+  --admin-sidebar-hover: #334155;
+  --admin-sidebar-active: #198754;
+  --admin-bg: #f1f5f9;
+  --admin-card-bg: #ffffff;
+  --admin-text-main: #0f172a;
+  --admin-text-muted: #64748b;
+  --admin-border: #e2e8f0;
+  --admin-radius: 8px;
+  --admin-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--admin-text-main);
+  background-color: var(--admin-bg);
+  line-height: 1.5;
+  font-size: 14.5px;
+}
+
+a {
+  color: var(--admin-primary);
+  text-decoration: none;
+}
+
+/* Layout */
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 250px;
+  background-color: var(--admin-sidebar-bg);
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.sidebar-brand span {
+  color: #20c997;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 16px 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.menu-heading {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  padding: 12px 20px 6px;
+  letter-spacing: 0.8px;
+}
+
+.menu-item a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  color: #cbd5e1;
+  font-weight: 600;
+  font-size: 13.5px;
+  transition: all 0.2s ease;
+}
+
+.menu-item a:hover {
+  background-color: var(--admin-sidebar-hover);
+  color: #ffffff;
+}
+
+.menu-item.active a {
+  background-color: var(--admin-sidebar-active);
+  color: #ffffff;
+}
+
+.menu-icon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* Main Content Area */
+.admin-main {
+  flex: 1;
+  margin-left: 250px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Top Navbar */
+.admin-navbar {
+  height: 64px;
+  background-color: var(--admin-card-bg);
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sidebar-toggle-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--admin-text-main);
+  cursor: pointer;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #d1e7dd;
+  color: var(--admin-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.user-info {
+  line-height: 1.2;
+}
+
+.user-name {
+  font-weight: 700;
+  font-size: 13.5px;
+}
+
+.user-role {
+  font-size: 11px;
+  color: var(--admin-text-muted);
+}
+
+/* Content Container */
+.admin-content {
+  padding: 24px;
+  flex: 1;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--admin-text-main);
+}
+
+.page-subtitle {
+  font-size: 13px;
+  color: var(--admin-text-muted);
+  margin-top: 2px;
+}
+
+/* Dashboard Statistic Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background-color: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--admin-shadow);
+}
+
+.stat-card-info p {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--admin-text-muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.stat-card-info h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--admin-text-main);
+}
+
+.stat-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.stat-icon-green  { background: #d1e7dd; color: #0f5132; }
+.stat-icon-blue   { background: #cfe2ff; color: #084298; }
+.stat-icon-yellow { background: #fff3cd; color: #664d03; }
+.stat-icon-red    { background: #f8d7da; color: #842029; }
+.stat-icon-purple { background: #e0cffc; color: #432874; }
+
+/* Admin Cards & Tables */
+.admin-card {
+  background-color: var(--admin-card-bg);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  box-shadow: var(--admin-shadow);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.admin-card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--admin-text-main);
+}
+
+.admin-card-body {
+  padding: 20px;
+}
+
+/* Data Table */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.admin-table th {
+  background-color: #f8fafc;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--admin-text-muted);
+  text-transform: uppercase;
+  font-size: 11.5px;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--admin-border);
+  vertical-align: middle;
+}
+
+.admin-table tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.badge-menunggu-konfirmasi { background: #fff3cd; color: #856404; }
+.badge-dikonfirmasi        { background: #cfe2ff; color: #084298; }
+.badge-diproses            { background: #d2f4ea; color: #0f5132; }
+.badge-dalam-pengiriman    { background: #e0cffc; color: #432874; }
+.badge-selesai             { background: #d1e7dd; color: #0f5132; }
+.badge-dibatalkan          { background: #f8d7da; color: #842029; }
+.badge-active              { background: #d1e7dd; color: #0f5132; }
+.badge-inactive            { background: #e2e8f0; color: #475569; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.btn-primary { background: var(--admin-primary); color: #fff; }
+.btn-primary:hover { background: var(--admin-primary-dark); }
+.btn-secondary { background: #e2e8f0; color: #334155; }
+.btn-secondary:hover { background: #cbd5e1; }
+.btn-danger { background: #dc3545; color: #fff; }
+.btn-danger:hover { background: #bb2d3b; }
+.btn-success { background: #198754; color: #fff; }
+.btn-warning { background: #ffc107; color: #000; }
+.btn-info { background: #0dcaf0; color: #000; }
+
+/* Forms */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--admin-border);
+  border-radius: 6px;
+  font-size: 13.5px;
+  outline: none;
+  background: #fff;
+  transition: border 0.2s;
+}
+
+.form-control:focus {
+  border-color: var(--admin-primary);
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
+}
+
+/* Image preview container */
+.img-preview-box {
+  width: 120px;
+  height: 120px;
+  border: 1px dashed var(--admin-border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 8px;
+  background: #f8fafc;
+}
+
+.img-preview-box img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Print Invoice Styling */
+@media print {
+  .admin-sidebar, .admin-navbar, .no-print, .btn {
+    display: none !important;
+  }
+  .admin-main {
+    margin-left: 0 !important;
+  }
+  .admin-content {
+    padding: 0 !important;
+  }
+  body {
+    background: #fff !important;
+    font-size: 12pt;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+  }
+  .admin-sidebar.show {
+    transform: translateX(0);
+  }
+  .admin-main {
+    margin-left: 0;
+  }
+  .sidebar-toggle-btn {
+    display: block;
+  }
+}
+
+</style>
+  <style>
+    /* Styling for demo tabs and modals */
+    .admin-tab-content { display: none; }
+    .admin-tab-content.active { display: block; }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-body { padding: 20px; }
+    .modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid #e2e8f0;
+      background: #f8fafc;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .nav-pill-btn {
+      cursor: pointer;
+    }
+    
+    /* Mode Sembunyikan Sidebar */
+    .sidebar-hidden .admin-sidebar {
+      display: none !important;
+    }
+    .sidebar-hidden .admin-main {
+      margin-left: 0 !important;
+      width: 100% !important;
+    }
+
+    .login-card {
+      background: #ffffff;
+      border-radius: 14px;
+      max-width: 430px;
+      width: 100%;
+      padding: 34px 30px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Layar Login / Kunci Dashboard (Dashboard Tersembunyi Default) -->
+<div id="adminLoginScreen" style="min-height: 100vh; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); display: flex; align-items: center; justify-content: center; padding: 20px;">
+  <div class="login-card">
+    <div style="text-align: center; margin-bottom: 14px;">
+      <img src="assets/images/logo.png" alt="JAWA MART" style="height: 60px; width: auto; object-fit: contain;">
+    </div>
+    <p style="font-size: 13px; color: #64748b; margin-bottom: 22px;">Portal Khusus Administrator Toko Sembako</p>
+
+    <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 12px 14px; margin-bottom: 22px; font-size: 12.5px; color: #166534; text-align: left; display: flex; gap: 10px; align-items: center;">
+      <span style="font-size: 22px;">ðŸ”’</span>
+      <div>
+        <strong>Dashboard Tersembunyi &amp; Terkunci:</strong> Masukkan autentikasi administrator untuk membuka dashboard.
+      </div>
+    </div>
+
+    <form onsubmit="event.preventDefault(); submitAdminLogin();" style="text-align: left;">
+      <div class="form-group" style="margin-bottom: 14px;">
+        <label class="form-label" style="font-weight: 700; font-size: 13px; color: #334155;">Nama Pengguna / Username</label>
+        <input type="text" id="loginUser" class="form-control" value="admin" required placeholder="admin" style="font-size: 14px; padding: 10px 12px;">
+      </div>
+
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label class="form-label" style="font-weight: 700; font-size: 13px; color: #334155;">Kata Sandi / Password</label>
+        <input type="password" id="loginPass" class="form-control" value="admin123" required placeholder="admin123" style="font-size: 14px; padding: 10px 12px;">
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 15px; font-weight: 800; border-radius: 8px; justify-content: center; box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3);">
+        ðŸ”“ Buka Dashboard Admin
+      </button>
+
+      <div style="text-align: center; margin-top: 18px;">
+        <a href="preview.html" style="font-size: 13px; color: #198754; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+          &larr; Buka Toko Sembako (Tampilan Pembeli)
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="admin-wrapper" id="adminAppWrapper" style="display: none;">
+  
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <div class="sidebar-header">
+      <a href="javascript:void(0)" onclick="showTab('dashboard')" class="sidebar-brand" style="display: flex; align-items: center; justify-content: center; padding: 4px 0;">
+        <img src="assets/images/logo.png" alt="JAWA MART" style="height: 40px; width: auto; object-fit: contain;">
+      </a>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li class="menu-heading">Utama</li>
+      <li class="menu-item active" id="menu-dashboard">
+        <a href="javascript:void(0)" onclick="showTab('dashboard')">
+          <span class="menu-icon">ðŸ“Š</span>
+          <span>Dashboard Overview</span>
+        </a>
+      </li>
+
+      <li class="menu-heading">Katalog &amp; Inventori</li>
+      <li class="menu-item" id="menu-products">
+        <a href="javascript:void(0)" onclick="showTab('products')">
+          <span class="menu-icon">ðŸ“¦</span>
+          <span>Kelola Produk</span>
+        </a>
+      </li>
+      <li class="menu-item" id="menu-categories">
+        <a href="javascript:void(0)" onclick="showTab('categories')">
+          <span class="menu-icon">ðŸ·ï¸</span>
+          <span>Kategori Sembako</span>
+        </a>
+      </li>
+      <li class="menu-item" id="menu-stock">
+        <a href="javascript:void(0)" onclick="showTab('stock')">
+          <span class="menu-icon">ðŸ“ˆ</span>
+          <span>Manajemen Stok &amp; Mutasi</span>
+        </a>
+      </li>
+
+      <li class="menu-heading">Transaksi &amp; Analisis</li>
+      <li class="menu-item" id="menu-orders">
+        <a href="javascript:void(0)" onclick="showTab('orders')">
+          <span class="menu-icon">ðŸ›’</span>
+          <span>Pesanan Toko</span>
+        </a>
+      </li>
+      <li class="menu-item" id="menu-reports">
+        <a href="javascript:void(0)" onclick="showTab('reports')">
+          <span class="menu-icon">ðŸ“‘</span>
+          <span>Laporan Penjualan</span>
+        </a>
+      </li>
+
+      <li class="menu-heading">Tampilan &amp; Konfigurasi</li>
+      <li class="menu-item" id="menu-banners">
+        <a href="javascript:void(0)" onclick="showTab('banners')">
+          <span class="menu-icon">ðŸ–¼ï¸</span>
+          <span>Banner Promosi</span>
+        </a>
+      </li>
+      <li class="menu-item" id="menu-settings">
+        <a href="javascript:void(0)" onclick="showTab('settings')">
+          <span class="menu-icon">âš™ï¸</span>
+          <span>Pengaturan Toko &amp; WA</span>
+        </a>
+      </li>
+
+      <li class="menu-heading">Pratinjau Klien</li>
+      <li class="menu-item">
+        <a href="preview.html" target="_blank">
+          <span class="menu-icon">ðŸŒ</span>
+          <span>Lihat Toko Pelanggan &nearr;</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div>JAWA MART v2.0 (Demo Mode)</div>
+      <small style="color: #64748b;">Panel Toko Sembako Interaktif</small>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <div class="admin-main">
+    
+    <!-- Top Navbar -->
+    <header class="admin-navbar">
+      <div class="navbar-left">
+        <button type="button" class="sidebar-toggle-btn" onclick="document.getElementById('adminSidebar').classList.toggle('show')">
+          â˜°
+        </button>
+        <div style="font-weight: 700; font-size: 15px; color: #334155;" id="topbarTitle">
+          Dashboard Overview
+        </div>
+      </div>
+
+      <div class="navbar-right">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="toggleSidebarHide()" id="btnToggleSidebar" title="Sembunyikan menu samping untuk tampilan layar penuh">
+          <span>ðŸ“ Sembunyikan Sidebar</span>
+        </button>
+
+        <a href="preview.html" target="_blank" class="btn btn-secondary btn-sm">
+          <span>Lihat Web Toko &nearr;</span>
+        </a>
+
+        <div class="user-badge">
+          <div class="user-avatar">A</div>
+          <div class="user-info">
+            <div class="user-name">Administrator JAWA MART</div>
+            <div class="user-role">Super Admin</div>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-danger btn-sm" onclick="lockAndHideDashboard()" title="Sembunyikan dan kunci dashboard ini sekarang" style="font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+          <span>ðŸ”’</span> Kunci &amp; Sembunyikan Dashboard
+        </button>
+      </div>
+    </header>
+
+    <!-- Admin Content Area -->
+    <main class="admin-content">
+
+      <div id="alertBanner" style="background: #e8f5e9; border: 1px solid #c3e6cb; border-radius: 8px; padding: 12px 18px; margin-bottom: 20px; font-size: 13.5px; color: #0f5132; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div style="flex: 1;">
+          <strong>ðŸš€ Mode Interaktif Browser Aktif:</strong> Anda dapat menguji tambah produk, sesuaikan stok, ubah status pesanan, ganti banner &amp; nomor WhatsApp langsung di browser ini.
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button type="button" class="btn btn-primary btn-sm" onclick="forceResetAdminProducts()" title="Terapkan 12 foto produk nyata sembako terbaru & bersihkan data uji coba" style="font-size: 12px; padding: 5px 12px;">
+            ðŸ”„ Muat Ulang Foto Sembako Asli
+          </button>
+          <button type="button" onclick="this.closest('#alertBanner').remove()" style="background:none; border:none; cursor:pointer; font-size:16px;">&times;</button>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TAB 1: DASHBOARD OVERVIEW
+           ========================================== -->
+      <section id="tab-dashboard" class="admin-tab-content active">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Dashboard Overview</h1>
+            <p class="page-subtitle">Ringkasan statistik transaksi sembako, pergerakan stok, dan pesanan terbaru</p>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <p>Omzet Selesai</p>
+              <h3 style="color: #198754; font-size: 20px;" id="statRevenue">Rp 0</h3>
+              <small style="color: #64748b; font-size: 11px;">Dari pesanan sukses</small>
+            </div>
+            <div class="stat-card-icon stat-icon-green">ðŸ’°</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <p>Pesanan Baru</p>
+              <h3 id="statOrdersNew">0</h3>
+              <small style="color: #856404; font-size: 11px;">Menunggu konfirmasi</small>
+            </div>
+            <div class="stat-card-icon stat-icon-yellow">ðŸ””</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <p>Sedang Diproses</p>
+              <h3 id="statOrdersProcessing">0</h3>
+              <small style="color: #084298; font-size: 11px;">Dalam kemas / kirim</small>
+            </div>
+            <div class="stat-card-icon stat-icon-blue">ðŸšš</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-info">
+              <p>Total Produk</p>
+              <h3 id="statTotalProducts">12</h3>
+              <small style="color: #64748b; font-size: 11px;">10 kategori sembako</small>
+            </div>
+            <div class="stat-card-icon stat-icon-purple">ðŸ“¦</div>
+          </div>
+        </div>
+
+        <!-- Grid Chart & Stock Alerts -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px;">
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title">Grafik Penjualan 7 Hari Terakhir</h3>
+              <button class="btn btn-secondary btn-sm" onclick="showTab('reports')">Lihat Laporan &rarr;</button>
+            </div>
+            <div class="admin-card-body">
+              <canvas id="salesChartCanvas" style="width: 100%; height: 240px;"></canvas>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3 class="admin-card-title">Peringatan Stok Menipis</h3>
+              <button class="btn btn-secondary btn-sm" onclick="showTab('stock')">Kelola Stok &rarr;</button>
+            </div>
+            <div class="admin-card-body" style="padding: 12px 16px;">
+              <ul id="lowStockList" style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                <!-- Rendered via JS -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Orders Table -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Pesanan Pelanggan Terbaru</h3>
+            <button class="btn btn-primary btn-sm" onclick="showTab('orders')">Semua Pesanan &rarr;</button>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Kode Pesanan</th>
+                  <th>Nama Pelanggan</th>
+                  <th>Nomor WhatsApp</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="recentOrdersTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TAB 2: KELOLA PRODUK
+           ========================================== -->
+      <section id="tab-products" class="admin-tab-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Kelola Produk Sembako</h1>
+            <p class="page-subtitle">Daftar katalog sembako aktif, harga normal, harga promo diskon, dan stok fisik</p>
+          </div>
+          <button class="btn btn-primary" onclick="openAddProductModal()">+ Tambah Produk Baru</button>
+        </div>
+
+        <div class="admin-card">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Foto</th>
+                  <th>Nama Produk &amp; SKU</th>
+                  <th>Kategori</th>
+                  <th>Harga Normal</th>
+                  <th>Harga Diskon</th>
+                  <th>Stok Tersedia</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TAB 3: KATEGORI SEMBAKO
+           ========================================== -->
+      <section id="tab-categories" class="admin-tab-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Kategori Sembako</h1>
+            <p class="page-subtitle">Pengelompokan barang sembako untuk memudahkan pencarian pembeli</p>
+          </div>
+          <button class="btn btn-primary" onclick="openAddCategoryModal()">+ Tambah Kategori Baru</button>
+        </div>
+
+        <div class="admin-card">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Ikon</th>
+                  <th>Nama Kategori</th>
+                  <th>Slug URL</th>
+                  <th>Deskripsi</th>
+                  <th>Jumlah Produk</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="categoriesTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TAB 4: MANAJEMEN STOK & MUTASI
+           ========================================== -->
+      <section id="tab-stock" class="admin-tab-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Manajemen Stok &amp; Riwayat Mutasi</h1>
+            <p class="page-subtitle">Pantau stok fisik barang, lakukan restock barang masuk, dan lacak jejak audit</p>
+          </div>
+          <button class="btn btn-primary" onclick="openAdjustStockModal()">+ Atur Penyesuaian / Restock Stok</button>
+        </div>
+
+        <div class="admin-card" style="margin-bottom: 24px;">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Kondisi Stok Produk Fisik Saat Ini</h3>
+          </div>
+          <div class="table-responsive" style="max-height: 320px; overflow-y: auto;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>SKU</th>
+                  <th>Nama Barang</th>
+                  <th>Stok Saat Ini</th>
+                  <th>Batas Minimum</th>
+                  <th>Status</th>
+                  <th style="text-align: right;">Aksi Cepat</th>
+                </tr>
+              </thead>
+              <tbody id="stockOverviewTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Riwayat Lengkap Mutasi Stok (Audit Trail)</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Waktu</th>
+                  <th>Produk</th>
+                  <th>Jenis Transaksi</th>
+                  <th>Perubahan</th>
+                  <th>Sebelum</th>
+                  <th>Sesudah</th>
+                  <th>Catatan / Alasan</th>
+                  <th>Petugas</th>
+                </tr>
+              </thead>
+              <tbody id="stockMovementsTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TAB 5: PESANAN TOKO
+           ========================================== -->
+      <section id="tab-orders" class="admin-tab-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Pesanan Toko &amp; Transaksi WhatsApp</h1>
+            <p class="page-subtitle">Kelola pesanan pelanggan, hubungi pembeli via WhatsApp, dan perbarui status pesanan</p>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Kode Pesanan</th>
+                  <th>Pelanggan</th>
+                  <th>Nomor WhatsApp</th>
+                  <th>Total Tagihan</th>
+                  <th>Status</th>
+                  <th>Waktu</th>
+                  <th style="text-align: right;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TAB 6: LAPORAN PENJUALAN
+           ========================================== -->
+      <section id="tab-reports" class="admin-tab-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Laporan Penjualan</h1>
+            <p class="page-subtitle">Rekapitulasi penjualan, omzet bersih, dan produk paling laris</p>
+          </div>
+          <button class="btn btn-success" onclick="exportCsvReport()">ðŸ“¥ Unduh Excel / CSV</button>
+        </div>
+
+        <div class="admin-card" style="margin-bottom: 24px;">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">ðŸ† Produk Sembako Paling Laris</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Nama Produk</th>
+                  <th>SKU</th>
+                  <th style="text-align: center;">Jumlah Terjual</th>
+                  <th style="text-align: right;">Total Nilai</th>
+                </tr>
+              </thead>
+              <tbody id="topSellingTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TAB 7: BANNER PROMOSI
+           ========================================== -->
+      <section id="tab-banners" class="admin-tab-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Kelola Banner Promosi</h1>
+            <p class="page-subtitle">Atur spanduk slider promo sembako di halaman beranda toko</p>
+          </div>
+          <button class="btn btn-primary" onclick="openAddBannerModal()">+ Tambah Banner Baru</button>
+        </div>
+
+        <div class="admin-card">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 70px;">Urutan</th>
+                  <th style="width: 140px;">Preview Gambar</th>
+                  <th>Judul &amp; Deskripsi Promo</th>
+                  <th>Teks &amp; Link Tombol</th>
+                  <th>Status</th>
+                  <th style="text-align: right; width: 160px;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="bannersTableBody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           TAB 8: PENGATURAN TOKO & WA
+           ========================================== -->
+      <section id="tab-settings" class="admin-tab-content">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Pengaturan Toko &amp; Nomor WhatsApp</h1>
+            <p class="page-subtitle">Ubah nomor WhatsApp resmi toko, nama brand, alamat, dan ongkos kirim</p>
+          </div>
+        </div>
+
+        <div class="admin-card" style="max-width: 680px;">
+          <div class="admin-card-body">
+            <form onsubmit="event.preventDefault(); saveSettings();">
+              <div class="form-group">
+                <label class="form-label">Nama Toko</label>
+                <input type="text" id="settingStoreName" class="form-control" value="JAWA MART" required>
+              </div>
+
+              <!-- Nomor WhatsApp Dinamis (PRD Section 1.4 & 8.8) -->
+              <div style="background: #e8f5e9; border: 1.5px solid #25d366; border-radius: 8px; padding: 16px; margin-bottom: 18px;">
+                <label class="form-label" style="color: #0f5132; font-weight: 800;">
+                  ðŸ’¬ Nomor WhatsApp Resmi Toko (Semua Tombol WA Website Mengikuti Nomor Ini)
+                </label>
+                <input type="text" id="settingWaNumber" class="form-control" style="font-weight: 800; font-size: 16px; color: #198754;" value="6287812122735" required>
+                <small style="color: #475569; display: block; margin-top: 4px;">Awali dengan 62 atau 08. Contoh: 6287812122735</small>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Alamat Toko &amp; Gudang</label>
+                <textarea id="settingAddress" class="form-control" rows="2">Jl. Pasar Tradisional &amp; Sembako Jaya No. 88, Jawa, Indonesia</textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Ongkos Kirim Standar (Rp)</label>
+                  <input type="number" id="settingShipping" class="form-control" value="10000">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Minimal Belanja Gratis Ongkir (Rp)</label>
+                  <input type="number" id="settingFreeMin" class="form-control" value="150000">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="padding: 10px 24px;">Simpan Pengaturan Toko</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ==========================================
+     MODALS
+     ========================================== -->
+
+<!-- Modal Tambah Produk -->
+<div class="modal-overlay" id="modalAddProduct">
+  <div class="modal-box" style="max-width: 620px;">
+    <div class="modal-header">
+      <h3 style="font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+        <span>ðŸ“¦</span> Tambah Produk Sembako Baru
+      </h3>
+      <button onclick="closeModal('modalAddProduct')" style="background:none; border:none; font-size:20px; cursor:pointer;">&times;</button>
+    </div>
+    <form onsubmit="event.preventDefault(); submitNewProduct();">
+      <div class="modal-body">
+        
+        <!-- Upload & Pilih Foto Produk -->
+        <div class="form-group" style="background: #f8fafc; border: 1.5px dashed #cbd5e1; border-radius: 8px; padding: 16px; margin-bottom: 18px;">
+          <label class="form-label" style="font-weight: 800; color: #1e293b; font-size: 13.5px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+            <span>ðŸ“· Foto Produk Sembako</span>
+            <span style="font-size: 11px; font-weight: normal; color: #64748b;">(Upload file komputer / pilih ilustrasi)</span>
+          </label>
+          
+          <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 14px;">
+            <div style="text-align: center; flex-shrink: 0;">
+              <div style="width: 76px; height: 76px; border: 2px solid #198754; border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.06);">
+                <img id="newProdPreview" src="assets/images/placeholder.svg" alt="Preview Foto" style="width: 100%; height: 100%; object-fit: contain; padding: 4px;">
+              </div>
+              <small style="font-size: 10px; color: #198754; font-weight: 700; margin-top: 3px; display: block;">Preview Foto</small>
+            </div>
+
+            <div style="flex: 1;">
+              <label style="font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">
+                Opsi 1: Upload File Foto dari Komputer / HP:
+              </label>
+              <input type="file" id="newProdFile" accept="image/*" class="form-control" style="font-size: 12px; padding: 6px 10px;" onchange="handleImageUpload(event, 'newProdPreview', 'newProdImgData')">
+              <small style="color: #64748b; font-size: 11px; display: block; margin-top: 3px;">Format: JPG, PNG, WEBP, SVG (Maks. 2 MB)</small>
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">
+              Opsi 2: Atau Pilih Ilustrasi Bawaan Sembako JAWA MART:
+            </label>
+            <select id="newProdPreset" class="form-control" style="font-size: 13px;" onchange="handlePresetSelect(this.value, 'newProdPreview', 'newProdImgData')">
+              <option value="">-- Pilih Foto Asli Sembako --</option>
+              <option value="uploads/products/beras-premium-5kg.jpg">ðŸŒ¾ Beras Premium Ramos 5 Kg</option>
+              <option value="uploads/products/minyak-goreng-2l.jpg">ðŸŒ» Minyak Goreng Sawit 2 Liter</option>
+              <option value="uploads/products/gula-pasir-1kg.jpg">ðŸ§‚ Gula Pasir Kristal Putih 1 Kg</option>
+              <option value="uploads/products/tepung-terigu-1kg.jpg">ðŸŒ¾ Tepung Terigu Serbaguna 1 Kg</option>
+              <option value="uploads/products/indomie-goreng.jpg">ðŸœ Mie Instan Goreng Spesial</option>
+              <option value="uploads/products/telur-ayam-1kg.jpg">ðŸ¥š Telur Ayam Negeri Fresh 1 Kg</option>
+              <option value="uploads/products/susu-kental-manis.jpg">ðŸ¥› Susu Kental Manis 370g</option>
+              <option value="uploads/products/garam-dapur-1kg.jpg">ðŸ§‚ Garam Dapur Beryodium 250g</option>
+              <option value="uploads/products/kecap-manis-abc.jpg">ðŸ¾ Kecap Manis Tradisional 520ml</option>
+              <option value="uploads/products/sarden-abc.jpg">ðŸŸ Ikan Sarden Saus Tomat 425g</option>
+              <option value="uploads/products/sabun-cuci-piring.jpg">ðŸ‹ Sabun Cuci Piring Jeruk Nipis 700ml</option>
+              <option value="uploads/products/teh-celup-kotak.jpg">ðŸµ Teh Celup Wangi Alami Isi 25</option>
+              <option value="assets/images/placeholder.svg">ðŸ“¦ Placeholder Produk Standar</option>
+            </select>
+          </div>
+          <input type="hidden" id="newProdImgData" value="assets/images/placeholder.svg">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Nama Produk Sembako *</label>
+          <input type="text" id="newProdName" class="form-control" placeholder="Ketik nama produk sembako di sini..." required>
+          <small style="color: #64748b; font-size: 11.5px; display: block; margin-top: 4px;">* Ketik nama barang yang ingin dijual (misal: <em>Beras Ramos Pulen 5 Kg</em>).</small>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Kategori *</label>
+            <select id="newProdCat" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Satuan *</label>
+            <select id="newProdUnit" class="form-control" required>
+              <option value="Kg">Kg</option>
+              <option value="Liter">Liter</option>
+              <option value="Pack">Pack</option>
+              <option value="Pcs">Pcs</option>
+              <option value="Karung">Karung</option>
+              <option value="Kaleng">Kaleng</option>
+              <option value="Botol">Botol</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Harga Normal (Rp) *</label>
+            <input type="number" id="newProdPrice" class="form-control" placeholder="75000" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Harga Diskon (Rp)</label>
+            <input type="number" id="newProdDiscount" class="form-control" placeholder="Kosongkan jika normal">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Stok Awal *</label>
+            <input type="number" id="newProdStock" class="form-control" value="50" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Batas Minimum Stok</label>
+            <input type="number" id="newProdMin" class="form-control" value="5">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddProduct')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Produk &amp; Foto</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Edit Produk & Ganti Foto -->
+<div class="modal-overlay" id="modalEditProduct">
+  <div class="modal-box" style="max-width: 620px;">
+    <div class="modal-header">
+      <h3 style="font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+        <span>âœï¸</span> Edit Produk &amp; Ganti Foto
+      </h3>
+      <button onclick="closeModal('modalEditProduct')" style="background:none; border:none; font-size:20px; cursor:pointer;">&times;</button>
+    </div>
+    <form onsubmit="event.preventDefault(); submitEditProduct();">
+      <input type="hidden" id="editProdId">
+      <div class="modal-body">
+        
+        <!-- Bagian Edit / Ganti Foto Produk -->
+        <div class="form-group" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 16px; margin-bottom: 18px;">
+          <label class="form-label" style="font-weight: 800; color: #166534; font-size: 13.5px; margin-bottom: 8px; display: block;">
+            ðŸ“· Ganti / Edit Foto Produk Sembako
+          </label>
+          
+          <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 12px;">
+            <div style="text-align: center; flex-shrink: 0;">
+              <div style="width: 80px; height: 80px; border: 2px solid #16a34a; border-radius: 8px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
+                <img id="editProdPreview" src="" alt="Foto Produk" style="width: 100%; height: 100%; object-fit: contain; padding: 4px;">
+              </div>
+              <small style="font-size: 10px; color: #166534; font-weight: 700; margin-top: 4px; display: block;">Foto Saat Ini</small>
+            </div>
+            
+            <div style="flex: 1;">
+              <label style="font-size: 12px; font-weight: 700; color: #1e293b; margin-bottom: 4px; display: block;">
+                Opsi 1: Upload Foto Baru dari Komputer / HP:
+              </label>
+              <input type="file" id="editProdFile" accept="image/*" class="form-control" style="font-size: 12.5px; padding: 7px 10px;" onchange="handleImageUpload(event, 'editProdPreview', 'editProdImgData')">
+              <small style="color: #475569; font-size: 11px; display: block; margin-top: 4px;">Pilih file gambar baru dari perangkat Anda (JPG, PNG, WEBP, SVG).</small>
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">
+              Opsi 2: Atau Ganti dengan Ilustrasi Sembako:
+            </label>
+            <select id="editProdPreset" class="form-control" style="font-size: 13px;" onchange="handlePresetSelect(this.value, 'editProdPreview', 'editProdImgData')">
+              <option value="">-- Tetap Gunakan Foto Saat Ini atau Pilih Foto Asli --</option>
+              <option value="uploads/products/beras-premium-5kg.jpg">ðŸŒ¾ Beras Premium Ramos 5 Kg</option>
+              <option value="uploads/products/minyak-goreng-2l.jpg">ðŸŒ» Minyak Goreng Sawit 2 Liter</option>
+              <option value="uploads/products/gula-pasir-1kg.jpg">ðŸ§‚ Gula Pasir Kristal Putih 1 Kg</option>
+              <option value="uploads/products/tepung-terigu-1kg.jpg">ðŸŒ¾ Tepung Terigu Serbaguna 1 Kg</option>
+              <option value="uploads/products/indomie-goreng.jpg">ðŸœ Mie Instan Goreng Spesial</option>
+              <option value="uploads/products/telur-ayam-1kg.jpg">ðŸ¥š Telur Ayam Negeri Fresh 1 Kg</option>
+              <option value="uploads/products/susu-kental-manis.jpg">ðŸ¥› Susu Kental Manis 370g</option>
+              <option value="uploads/products/garam-dapur-1kg.jpg">ðŸ§‚ Garam Dapur Beryodium 250g</option>
+              <option value="uploads/products/kecap-manis-abc.jpg">ðŸ¾ Kecap Manis Tradisional 520ml</option>
+              <option value="uploads/products/sarden-abc.jpg">ðŸŸ Ikan Sarden Saus Tomat 425g</option>
+              <option value="uploads/products/sabun-cuci-piring.jpg">ðŸ‹ Sabun Cuci Piring Jeruk Nipis 700ml</option>
+              <option value="uploads/products/teh-celup-kotak.jpg">ðŸµ Teh Celup Wangi Alami Isi 25</option>
+              <option value="assets/images/placeholder.svg">ðŸ“¦ Placeholder Produk Standar</option>
+            </select>
+          </div>
+          
+          <input type="hidden" id="editProdImgData" value="">
+        </div>
+
+        <!-- Detail Informasi Produk -->
+        <div class="form-group">
+          <label class="form-label">Nama Produk Sembako *</label>
+          <input type="text" id="editProdName" class="form-control" required>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Kategori *</label>
+            <select id="editProdCat" class="form-control" required></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Satuan *</label>
+            <select id="editProdUnit" class="form-control" required>
+              <option value="Kg">Kg</option>
+              <option value="Liter">Liter</option>
+              <option value="Pack">Pack</option>
+              <option value="Pcs">Pcs</option>
+              <option value="Karung">Karung</option>
+              <option value="Kaleng">Kaleng</option>
+              <option value="Botol">Botol</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Harga Normal (Rp) *</label>
+            <input type="number" id="editProdNormalPrice" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Harga Diskon / Jual (Rp) *</label>
+            <input type="number" id="editProdPrice" class="form-control" required>
+            <small style="color: #64748b; font-size: 11px;">Jika tidak diskon, samakan dengan harga normal.</small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Stok Fisik Tersedia *</label>
+            <input type="number" id="editProdStock" class="form-control" min="0" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Batas Minimum Peringatan Stok</label>
+            <input type="number" id="editProdMinStock" class="form-control" min="0">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Status Produk</label>
+          <select id="editProdStatus" class="form-control">
+            <option value="1">Aktif (Tampil di Toko)</option>
+            <option value="0">Nonaktif (Disembunyikan)</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalEditProduct')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan Produk &amp; Foto</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Penyesuaian Stok -->
+<div class="modal-overlay" id="modalAdjustStock">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 style="font-size: 16px; font-weight: 800;">Atur Penyesuaian / Restock Stok</h3>
+      <button onclick="closeModal('modalAdjustStock')" style="background:none; border:none; font-size:20px; cursor:pointer;">&times;</button>
+    </div>
+    <form onsubmit="event.preventDefault(); submitStockAdjustment();">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Pilih Produk *</label>
+          <select id="adjProdSelect" class="form-control" required></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jenis Penyesuaian *</label>
+          <select id="adjType" class="form-control" required>
+            <option value="add">+ Penambahan Stok (Barang Masuk / Restock Distributor)</option>
+            <option value="subtract">- Pengurangan Stok (Barang Rusak / Kadaluarsa)</option>
+            <option value="set">= Tetapkan Stok Baru (Hasil Hitung Fisik Stock Opname)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Jumlah / Nilai *</label>
+          <input type="number" id="adjQty" min="0" class="form-control" placeholder="Contoh: 20" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Catatan Alasan</label>
+          <input type="text" id="adjNote" class="form-control" placeholder="Contoh: Pengiriman barang masuk dari distributor pusat">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalAdjustStock')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Stok</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Detail Pesanan -->
+<div class="modal-overlay" id="modalOrderDetail">
+  <div class="modal-box" style="max-width: 650px;">
+    <div class="modal-header">
+      <h3 style="font-size: 16px; font-weight: 800;" id="modOrderCode">Detail Pesanan</h3>
+      <button onclick="closeModal('modalOrderDetail')" style="background:none; border:none; font-size:20px; cursor:pointer;">&times;</button>
+    </div>
+    <div class="modal-body" id="modOrderBody">
+      <!-- Rendered via JS -->
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" onclick="closeModal('modalOrderDetail')">Tutup</button>
+      <button type="button" class="btn btn-primary" id="btnUpdateOrderStatus">Perbarui Status</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Tambah Banner Promosi -->
+<div class="modal-overlay" id="modalAddBanner">
+  <div class="modal-box" style="max-width: 620px;">
+    <div class="modal-header">
+      <h3 style="font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+        <span>ðŸ–¼ï¸</span> Tambah Banner Promosi Baru
+      </h3>
+      <button onclick="closeModal('modalAddBanner')" style="background:none; border:none; font-size:20px; cursor:pointer;">&times;</button>
+    </div>
+    <form onsubmit="event.preventDefault(); submitNewBanner();">
+      <div class="modal-body">
+        
+        <!-- Upload & Preview Banner Image -->
+        <div class="form-group" style="background: #f8fafc; border: 1.5px dashed #cbd5e1; border-radius: 8px; padding: 16px; margin-bottom: 18px;">
+          <label class="form-label" style="font-weight: 800; color: #1e293b; font-size: 13.5px; margin-bottom: 10px; display: block;">
+            ðŸ“· Gambar Spanduk / Banner Promo
+          </label>
+          
+          <div style="margin-bottom: 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; overflow: hidden; background: #0f172a; height: 130px; display: flex; align-items: center; justify-content: center;">
+            <img id="newBannerPreview" src="uploads/banners/banner-1.svg" alt="Preview Banner" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+
+          <div style="margin-bottom: 10px;">
+            <label style="font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">
+              Upload File Gambar Banner dari Komputer / HP:
+            </label>
+            <input type="file" id="newBannerFile" accept="image/*" class="form-control" style="font-size: 12.5px; padding: 6px 10px;" onchange="handleImageUpload(event, 'newBannerPreview', 'newBannerImgData')">
+            <small style="color: #64748b; font-size: 11px; display: block; margin-top: 3px;">Rekomendasi rasio lebar 1200x400 px (Format JPG, PNG, WEBP, SVG).</small>
+          </div>
+
+          <div>
+            <label style="font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">
+              Atau Pilih Template Banner Bawaan:
+            </label>
+            <select id="newBannerPreset" class="form-control" style="font-size: 13px;" onchange="handlePresetSelect(this.value, 'newBannerPreview', 'newBannerImgData')">
+              <option value="uploads/banners/banner-1.svg">Banner 1: Belanja Sembako Hemat, Langsung Antar</option>
+              <option value="uploads/banners/banner-2.svg">Banner 2: Pesan Mudah &amp; Praktis Cukup via WhatsApp</option>
+            </select>
+          </div>
+          <input type="hidden" id="newBannerImgData" value="uploads/banners/banner-1.svg">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Judul Banner Promosi *</label>
+          <input type="text" id="newBannerTitle" class="form-control" placeholder="Contoh: Promo Sembako Awal Bulan Diskon 15%" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Deskripsi Singkat</label>
+          <input type="text" id="newBannerDesc" class="form-control" placeholder="Contoh: Dapatkan beras, minyak goreng, dan gula pasir harga hemat!">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Teks Tombol</label>
+            <input type="text" id="newBannerBtnText" class="form-control" value="Belanja Sekarang" placeholder="Belanja Sekarang">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Link Tujuan Tombol</label>
+            <input type="text" id="newBannerBtnLink" class="form-control" value="#katalog" placeholder="#katalog">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Urutan Tampil (Sort Order)</label>
+            <input type="number" id="newBannerOrder" class="form-control" value="1" min="1">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status Banner</label>
+            <select id="newBannerStatus" class="form-control">
+              <option value="1">Aktif (Tampil di Beranda)</option>
+              <option value="0">Nonaktif (Disembunyikan)</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalAddBanner')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Banner</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Edit Banner Promosi -->
+<div class="modal-overlay" id="modalEditBanner">
+  <div class="modal-box" style="max-width: 620px;">
+    <div class="modal-header">
+      <h3 style="font-size: 16px; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+        <span>âœï¸</span> Edit Banner Promosi
+      </h3>
+      <button onclick="closeModal('modalEditBanner')" style="background:none; border:none; font-size:20px; cursor:pointer;">&times;</button>
+    </div>
+    <form onsubmit="event.preventDefault(); submitEditBanner();">
+      <input type="hidden" id="editBannerId">
+      <div class="modal-body">
+        
+        <!-- Upload & Preview Banner Image -->
+        <div class="form-group" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 8px; padding: 16px; margin-bottom: 18px;">
+          <label class="form-label" style="font-weight: 800; color: #166534; font-size: 13.5px; margin-bottom: 10px; display: block;">
+            ðŸ“· Ganti Gambar Banner Promo
+          </label>
+          
+          <div style="margin-bottom: 12px; border: 1.5px solid #16a34a; border-radius: 8px; overflow: hidden; background: #0f172a; height: 130px; display: flex; align-items: center; justify-content: center;">
+            <img id="editBannerPreview" src="" alt="Preview Banner" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+
+          <div style="margin-bottom: 10px;">
+            <label style="font-size: 12px; font-weight: 700; color: #1e293b; margin-bottom: 4px; display: block;">
+              Upload File Gambar Banner Baru:
+            </label>
+            <input type="file" id="editBannerFile" accept="image/*" class="form-control" style="font-size: 12.5px; padding: 6px 10px;" onchange="handleImageUpload(event, 'editBannerPreview', 'editBannerImgData')">
+            <small style="color: #475569; font-size: 11px; display: block; margin-top: 3px;">Pilih file gambar baru dari laptop/HP Anda.</small>
+          </div>
+
+          <div>
+            <label style="font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; display: block;">
+              Atau Pilih Template Banner Bawaan:
+            </label>
+            <select id="editBannerPreset" class="form-control" style="font-size: 13px;" onchange="handlePresetSelect(this.value, 'editBannerPreview', 'editBannerImgData')">
+              <option value="">-- Tetap Gunakan Gambar Saat Ini atau Pilih Template --</option>
+              <option value="uploads/banners/banner-1.svg">Banner 1: Belanja Sembako Hemat, Langsung Antar</option>
+              <option value="uploads/banners/banner-2.svg">Banner 2: Pesan Mudah &amp; Praktis Cukup via WhatsApp</option>
+            </select>
+          </div>
+          <input type="hidden" id="editBannerImgData" value="">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Judul Banner Promosi *</label>
+          <input type="text" id="editBannerTitle" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Deskripsi Singkat</label>
+          <input type="text" id="editBannerDesc" class="form-control">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Teks Tombol</label>
+            <input type="text" id="editBannerBtnText" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Link Tujuan Tombol</label>
+            <input type="text" id="editBannerBtnLink" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Urutan Tampil (Sort Order)</label>
+            <input type="number" id="editBannerOrder" class="form-control" min="1" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Status Banner</label>
+            <select id="editBannerStatus" class="form-control">
+              <option value="1">Aktif (Tampil di Beranda)</option>
+              <option value="0">Nonaktif (Disembunyikan)</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('modalEditBanner')">Batal</button>
+        <button type="submit" class="btn btn-primary">Simpan Perubahan Banner</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+// Data State Awal
+let adminCategories = [
+  { id: 1, name: 'Beras dan Padi-padian', slug: 'beras', desc: 'Beras pulen premium', image: 'uploads/categories/beras.svg', count: 1 },
+  { id: 2, name: 'Minyak Goreng', slug: 'minyak', desc: 'Minyak sawit jernih', image: 'uploads/categories/minyak.svg', count: 1 },
+  { id: 3, name: 'Gula dan Garam', slug: 'gula-garam', desc: 'Gula pasir & garam halus', image: 'uploads/categories/gula-garam.svg', count: 2 },
+  { id: 4, name: 'Tepung', slug: 'tepung', desc: 'Tepung terigu & beras', image: 'uploads/categories/tepung.svg', count: 1 },
+  { id: 5, name: 'Mie Instan', slug: 'mie-instan', desc: 'Mie goreng & kuah', image: 'uploads/categories/mie-instan.svg', count: 1 },
+  { id: 6, name: 'Telur', slug: 'telur', desc: 'Telur ayam negeri fresh', image: 'uploads/categories/telur.svg', count: 1 },
+  { id: 7, name: 'Susu dan Minuman', slug: 'susu-minuman', desc: 'Susu SKM & teh celup', image: 'uploads/categories/susu-minuman.svg', count: 2 },
+  { id: 8, name: 'Bumbu Dapur', slug: 'bumbu', desc: 'Kecap manis & rempah', image: 'uploads/categories/bumbu.svg', count: 1 },
+  { id: 9, name: 'Makanan Kaleng', slug: 'makanan-kaleng', desc: 'Sarden saus tomat', image: 'uploads/categories/makanan-kaleng.svg', count: 1 },
+  { id: 10, name: 'Kebutuhan Rumah Tangga', slug: 'kebutuhan-rumah', desc: 'Sabun cuci piring', image: 'uploads/categories/kebutuhan-rumah.svg', count: 1 }
+];
+
+const defaultAdminProducts = [
+  { id: 1, catId: 1, catName: 'Beras dan Padi-padian', sku: 'BR-PRM-005', name: 'Beras Premium Ramos Wangi 5 Kg', price: 69500, normalPrice: 75000, unit: 'Karung', stock: 45, minStock: 5, image: 'uploads/products/beras-premium-5kg.jpg', status: 1 },
+  { id: 2, catId: 2, catName: 'Minyak Goreng', sku: 'MY-BIM-002', name: 'Minyak Goreng Sawit 2 Liter', price: 34500, normalPrice: 38000, unit: 'Pcs', stock: 80, minStock: 10, image: 'uploads/products/minyak-goreng-2l.jpg', status: 1 },
+  { id: 3, catId: 3, catName: 'Gula dan Garam', sku: 'GL-GLK-001', name: 'Gula Pasir Kristal Putih 1 Kg', price: 17200, normalPrice: 18500, unit: 'Pack', stock: 60, minStock: 10, image: 'uploads/products/gula-pasir-1kg.jpg', status: 1 },
+  { id: 4, catId: 4, catName: 'Tepung', sku: 'TP-SGT-001', name: 'Tepung Terigu Serbaguna 1 Kg', price: 13000, normalPrice: 14500, unit: 'Pack', stock: 40, minStock: 5, image: 'uploads/products/tepung-terigu-1kg.jpg', status: 1 },
+  { id: 5, catId: 5, catName: 'Mie Instan', sku: 'MI-IND-001', name: 'Mie Instan Goreng Spesial 85g', price: 3100, normalPrice: 3500, unit: 'Pcs', stock: 250, minStock: 20, image: 'uploads/products/indomie-goreng.jpg', status: 1 },
+  { id: 6, catId: 6, catName: 'Telur', sku: 'TL-AYM-001', name: 'Telur Ayam Negeri Fresh 1 Kg', price: 28000, normalPrice: 30000, unit: 'Kg', stock: 35, minStock: 5, image: 'uploads/products/telur-ayam-1kg.jpg', status: 1 },
+  { id: 7, catId: 7, catName: 'Susu dan Minuman', sku: 'SS-FFG-001', name: 'Susu Kental Manis 370g', price: 12500, normalPrice: 14000, unit: 'Kaleng', stock: 50, minStock: 8, image: 'uploads/products/susu-kental-manis.jpg', status: 1 },
+  { id: 8, catId: 3, catName: 'Gula dan Garam', sku: 'GR-KPL-001', name: 'Garam Dapur Beryodium Halus 250g', price: 4500, normalPrice: 4500, unit: 'Pack', stock: 90, minStock: 10, image: 'uploads/products/garam-dapur-1kg.jpg', status: 1 },
+  { id: 9, catId: 8, catName: 'Bumbu Dapur', sku: 'BM-KCP-520', name: 'Kecap Manis Tradisional 520ml', price: 20500, normalPrice: 23000, unit: 'Botol', stock: 4, minStock: 5, image: 'uploads/products/kecap-manis-abc.jpg', status: 1 },
+  { id: 10, catId: 9, catName: 'Makanan Kaleng', sku: 'MK-ABC-425', name: 'Ikan Sarden Saus Tomat Segar 425g', price: 23000, normalPrice: 25000, unit: 'Kaleng', stock: 0, minStock: 5, image: 'uploads/products/sarden-abc.jpg', status: 1 },
+  { id: 11, catId: 10, catName: 'Kebutuhan Rumah Tangga', sku: 'RT-SNL-700', name: 'Sabun Cuci Piring Jeruk Nipis 700ml', price: 14900, normalPrice: 16500, unit: 'Pcs', stock: 65, minStock: 10, image: 'uploads/products/sabun-cuci-piring.jpg', status: 1 },
+  { id: 12, catId: 7, catName: 'Susu dan Minuman', sku: 'MN-SRW-025', name: 'Teh Celup Wangi Alami Isi 25', price: 8500, normalPrice: 8500, unit: 'Pack', stock: 60, minStock: 10, image: 'uploads/products/teh-celup-kotak.jpg', status: 1 }
+];
+
+let adminProducts = [...defaultAdminProducts];
+
+let adminOrders = [
+  { id: 101, code: 'JM-7X89KL2M', customer: 'Ibu Siti Rahayu', phone: '081234567890', address: 'Jl. Melati No. 45 RT 02/04, Kel. Sukajaya', total: 104000, subtotal: 104000, shipping: 0, status: 'Menunggu Konfirmasi', date: '20 Nov 2026 14:15', items: [{ name: 'Beras Premium Ramos 5 Kg', qty: 1, price: 69500 }, { name: 'Minyak Goreng Sawit 2L', qty: 1, price: 34500 }], stockDeducted: false },
+  { id: 102, code: 'JM-9P23W7TY', customer: 'Bapak Hendra Wijaya', phone: '081398765432', address: 'Perumahan Griya Indah Blok C3', total: 72700, subtotal: 62700, shipping: 10000, status: 'Diproses', date: '20 Nov 2026 11:30', items: [{ name: 'Gula Pasir 1 Kg', qty: 2, price: 17200 }, { name: 'Telur Ayam 1 Kg', qty: 1, price: 28000 }], stockDeducted: true },
+  { id: 103, code: 'JM-4R56TX1Q', customer: 'Ibu Ratna Dewi', phone: '087712344321', address: 'Jl. Kenanga 2 No. 18', total: 173500, subtotal: 173500, shipping: 0, status: 'Selesai', date: '19 Nov 2026 16:40', items: [{ name: 'Beras Premium 5 Kg', qty: 2, price: 69500 }, { name: 'Minyak Goreng 2L', qty: 1, price: 34500 }], stockDeducted: true }
+];
+
+let stockMovements = [
+  { time: '20 Nov 2026 14:15', product: 'Beras Premium Ramos Wangi 5 Kg', sku: 'BR-PRM-005', type: 'Stok Awal', change: '+45', before: 0, after: 45, note: 'Inisialisasi stok sistem awal', admin: 'Administrator' },
+  { time: '20 Nov 2026 11:35', product: 'Telur Ayam Negeri Fresh 1 Kg', sku: 'TL-AYM-001', type: 'Pengurangan karena Pesanan', change: '-1', before: 36, after: 35, note: 'Pengurangan pesanan #JM-9P23W7TY', admin: 'Sistem' },
+  { time: '20 Nov 2026 09:00', product: 'Minyak Goreng Sawit 2 Liter', sku: 'MY-BIM-002', type: 'Penambahan Stok', change: '+20', before: 60, after: 80, note: 'Barang masuk dari distributor Bimoli', admin: 'Administrator' }
+];
+
+const defaultAdminBanners = [
+  { id: 1, order: 1, title: 'Belanja Sembako Hemat, Langsung Antar ke Rumah!', desc: 'Kebutuhan pokok beras, minyak, gula, tepung lengkap dengan harga terbaik dan terpercaya.', btnText: 'Belanja Sekarang', btnLink: '#katalog', image: 'uploads/banners/banner-1.svg', status: 1 },
+  { id: 2, order: 2, title: 'Pesan Mudah & Praktis Cukup via WhatsApp', desc: 'Pilih sembako di website, checkout otomatis tersimpan dan terhubung ke WhatsApp toko kami.', btnText: 'Lihat Katalog', btnLink: '#katalog', image: 'uploads/banners/banner-2.svg', status: 1 }
+];
+
+let adminBanners = [...defaultAdminBanners];
+
+function formatRupiah(num) {
+  return 'Rp ' + Number(num).toLocaleString('id-ID');
+}
+
+// Tab Switching
+function showTab(tabName) {
+  document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.sidebar-menu .menu-item').forEach(el => el.classList.remove('active'));
+
+  const tabEl = document.getElementById('tab-' + tabName);
+  const menuEl = document.getElementById('menu-' + tabName);
+
+  if (tabEl) tabEl.classList.add('active');
+  if (menuEl) menuEl.classList.add('active');
+
+  const titles = {
+    'dashboard': 'Dashboard Overview',
+    'products': 'Kelola Produk Sembako',
+    'categories': 'Kategori Sembako',
+    'stock': 'Manajemen Stok & Riwayat Mutasi',
+    'orders': 'Pesanan Toko & WhatsApp',
+    'reports': 'Laporan Penjualan',
+    'banners': 'Banner Promosi',
+    'settings': 'Pengaturan Toko & WhatsApp'
+  };
+  document.getElementById('topbarTitle').textContent = titles[tabName] || 'Dashboard Administrator';
+
+  if (tabName === 'dashboard') renderDashboardOverview();
+  if (tabName === 'products') renderProductsTable();
+  if (tabName === 'categories') renderCategoriesTable();
+  if (tabName === 'stock') renderStockView();
+  if (tabName === 'orders') renderOrdersTable();
+  if (tabName === 'reports') renderReportsView();
+  if (tabName === 'banners') renderBannersTable();
+}
+
+// 1. Dashboard Overview Render
+function renderDashboardOverview() {
+  const completedOrders = adminOrders.filter(o => o.status === 'Selesai');
+  const revenue = completedOrders.reduce((sum, o) => sum + o.total, 0);
+  const newOrders = adminOrders.filter(o => o.status === 'Menunggu Konfirmasi').length;
+  const procOrders = adminOrders.filter(o => ['Dikonfirmasi', 'Diproses', 'Dalam Pengiriman'].includes(o.status)).length;
+
+  document.getElementById('statRevenue').textContent = formatRupiah(revenue);
+  document.getElementById('statOrdersNew').textContent = newOrders;
+  document.getElementById('statOrdersProcessing').textContent = procOrders;
+  document.getElementById('statTotalProducts').textContent = adminProducts.filter(p => p.status === 1).length;
+
+  // Stock alerts
+  const lowStockList = document.getElementById('lowStockList');
+  const alertProds = adminProducts.filter(p => p.stock <= p.minStock);
+  if (alertProds.length > 0) {
+    lowStockList.innerHTML = alertProds.map(p => `
+      <li style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid #f1f5f9;">
+        <div>
+          <div style="font-weight: 700; font-size: 13px; color: #1e293b;">${p.name}</div>
+          <div style="font-size: 11px; color: #64748b;">SKU: ${p.sku}</div>
+        </div>
+        <div>
+          ${p.stock <= 0 
+            ? '<span class="status-badge badge-dibatalkan">Habis (0)</span>' 
+            : `<span class="status-badge badge-menunggu-konfirmasi">Sisa ${p.stock} ${p.unit}</span>`}
+        </div>
+      </li>
+    `).join('');
+  } else {
+    lowStockList.innerHTML = '<li style="color: #198754; font-weight: 600;">âœ“ Semua stok barang dalam batas aman.</li>';
+  }
+
+  // Recent Orders
+  const recBody = document.getElementById('recentOrdersTableBody');
+  recBody.innerHTML = adminOrders.slice(0, 5).map(o => `
+    <tr>
+      <td><a href="javascript:void(0)" onclick="openOrderDetail(${o.id})" style="font-weight: 800; color: #198754;">${o.code}</a></td>
+      <td style="font-weight: 600;">${o.customer}</td>
+      <td style="color: #25d366; font-weight: 600;">ðŸ’¬ ${o.phone}</td>
+      <td style="font-weight: 700; color: #198754;">${formatRupiah(o.total)}</td>
+      <td><span class="status-badge ${getStatusBadgeClass(o.status)}">${o.status}</span></td>
+      <td><button class="btn btn-secondary btn-sm" onclick="openOrderDetail(${o.id})">Kelola &rarr;</button></td>
+    </tr>
+  `).join('');
+
+  drawDemoChart();
+}
+
+function getStatusBadgeClass(st) {
+  if (st === 'Menunggu Konfirmasi') return 'badge-menunggu-konfirmasi';
+  if (st === 'Dikonfirmasi') return 'badge-dikonfirmasi';
+  if (st === 'Diproses') return 'badge-diproses';
+  if (st === 'Dalam Pengiriman') return 'badge-dalam-pengiriman';
+  if (st === 'Selesai') return 'badge-selesai';
+  return 'badge-dibatalkan';
+}
+
+function drawDemoChart() {
+  const canvas = document.getElementById('salesChartCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.parentElement.clientWidth || 500;
+  canvas.height = 240;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const labels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
+  const values = [75000, 120000, 45000, 185000, 240000, 310000, 173500];
+  const max = 350000;
+  const paddingLeft = 50;
+  const plotWidth = canvas.width - paddingLeft - 20;
+  const plotHeight = 180;
+  const barSpacing = plotWidth / labels.length;
+  const barWidth = Math.min(barSpacing * 0.5, 36);
+
+  labels.forEach((label, i) => {
+    const val = values[i];
+    const barHeight = (val / max) * plotHeight;
+    const x = paddingLeft + (i * barSpacing) + (barSpacing - barWidth) / 2;
+    const y = 20 + plotHeight - barHeight;
+
+    ctx.fillStyle = '#198754';
+    ctx.beginPath();
+    ctx.rect(x, y, barWidth, barHeight);
+    ctx.fill();
+
+    ctx.fillStyle = '#64748b';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(label, x + barWidth / 2, 225);
+  });
+}
+
+// 2. Products Table
+function renderProductsTable() {
+  const tbody = document.getElementById('productsTableBody');
+  tbody.innerHTML = adminProducts.map(p => `
+    <tr>
+      <td style="width: 52px;">
+        <div style="position: relative; display: inline-block; cursor: pointer;" onclick="openEditProductModal(${p.id})" title="Klik untuk edit / ganti foto produk ini">
+          <img src="${p.image}" style="width: 44px; height: 44px; object-fit: contain; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 2px; background: #fff; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+          <span style="position: absolute; bottom: -2px; right: -2px; background: #198754; color: #fff; font-size: 10px; border-radius: 50%; width: 17px; height: 17px; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.3); border: 1.5px solid #fff;" title="Ganti Foto">ðŸ“·</span>
+        </div>
+      </td>
+      <td>
+        <div style="font-weight: 700; color: #1e293b;">${p.name}</div>
+        <div style="font-size: 11px; color: #64748b;">SKU: ${p.sku}</div>
+      </td>
+      <td><span style="font-size: 12px; font-weight: 600; color: #475569;">${p.catName}</span></td>
+      <td style="font-weight: 600;">${formatRupiah(p.normalPrice)}</td>
+      <td>${p.price < p.normalPrice ? `<strong style="color: #198754;">${formatRupiah(p.price)}</strong>` : '<span style="color:#94a3b8;">-</span>'}</td>
+      <td>
+        ${p.stock <= 0 
+          ? '<span class="status-badge badge-dibatalkan">Habis (0)</span>' 
+          : `<strong style="color: ${p.stock <= p.minStock ? '#b45309' : '#198754'};">${p.stock}</strong> <small style="color:#64748b;">${p.unit}</small>`}
+      </td>
+      <td>
+        ${p.status === 1 
+          ? '<span class="status-badge badge-active">Aktif</span>' 
+          : '<span class="status-badge badge-dibatalkan">Nonaktif</span>'}
+      </td>
+      <td style="text-align: right; white-space: nowrap;">
+        <button class="btn btn-secondary btn-sm" onclick="openEditProductModal(${p.id})" title="Edit detail barang dan ganti foto" style="font-weight: 600;">
+          âœï¸ Edit &amp; Foto
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="deleteProduct(${p.id})">Hapus</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// Handler Upload File Gambar via FileReader (Preview Langsung)
+function handleImageUpload(e, previewId, dataHolderId) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    alert('Silakan pilih file gambar yang valid (JPG, PNG, WEBP, atau SVG).');
+    return;
+  }
+
+  if (file.size > 2 * 1024 * 1024) {
+    alert('Ukuran file foto melebihi batas maksimal 2 MB.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(evt) {
+    const dataUrl = evt.target.result;
+    document.getElementById(previewId).src = dataUrl;
+    document.getElementById(dataHolderId).value = dataUrl;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Handler Pilih Ilustrasi / Gambar Bawaan Sembako
+function handlePresetSelect(presetVal, previewId, dataHolderId) {
+  if (!presetVal) return;
+  document.getElementById(previewId).src = presetVal;
+  document.getElementById(dataHolderId).value = presetVal;
+}
+
+function openAddProductModal() {
+  const select = document.getElementById('newProdCat');
+  select.innerHTML = adminCategories.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+  
+  // Reset preview dan form foto
+  document.getElementById('newProdPreview').src = 'assets/images/placeholder.svg';
+  document.getElementById('newProdImgData').value = 'assets/images/placeholder.svg';
+  document.getElementById('newProdFile').value = '';
+  document.getElementById('newProdPreset').value = '';
+  document.getElementById('newProdName').value = '';
+  document.getElementById('newProdPrice').value = '';
+  document.getElementById('newProdDiscount').value = '';
+  document.getElementById('newProdStock').value = '50';
+  document.getElementById('newProdMin').value = '5';
+
+  document.getElementById('modalAddProduct').classList.add('active');
+}
+
+function submitNewProduct() {
+  const name = document.getElementById('newProdName').value.trim();
+  if (!name) {
+    alert('Nama produk sembako wajib diisi!');
+    return;
+  }
+  const catId = parseInt(document.getElementById('newProdCat').value);
+  const cat = adminCategories.find(c => c.id === catId);
+  const unit = document.getElementById('newProdUnit').value;
+  const price = parseFloat(document.getElementById('newProdPrice').value);
+  const disc = document.getElementById('newProdDiscount').value ? parseFloat(document.getElementById('newProdDiscount').value) : price;
+  const stock = parseInt(document.getElementById('newProdStock').value);
+  const minStock = parseInt(document.getElementById('newProdMin').value) || 5;
+  const image = document.getElementById('newProdImgData').value || 'assets/images/placeholder.svg';
+
+  const newId = Date.now();
+  const sku = 'JM-' + name.substring(0, 3).toUpperCase() + '-' + Math.floor(100 + Math.random() * 900);
+
+  adminProducts.unshift({
+    id: newId,
+    catId: catId,
+    catName: cat ? cat.name : 'Sembako',
+    sku: sku,
+    name: name,
+    price: disc || price,
+    normalPrice: price,
+    unit: unit,
+    stock: stock,
+    minStock: minStock,
+    image: image,
+    status: 1
+  });
+
+  stockMovements.unshift({
+    time: 'Baru saja',
+    product: name,
+    sku: sku,
+    type: 'Stok Awal',
+    change: '+' + stock,
+    before: 0,
+    after: stock,
+    note: 'Inisialisasi produk baru di sistem beserta foto',
+    admin: 'Administrator'
+  });
+
+  saveProductsToStorage();
+  closeModal('modalAddProduct');
+  renderProductsTable();
+  renderDashboardOverview();
+  alert(`Produk "${name}" berhasil ditambahkan ke katalog dengan fotonya!`);
+}
+
+// Buka Modal Edit Produk Lengkap Termasuk Ganti Foto
+function openEditProductModal(id) {
+  const p = adminProducts.find(x => x.id === id);
+  if (!p) return;
+
+  document.getElementById('editProdId').value = p.id;
+  document.getElementById('editProdName').value = p.name;
+  
+  // Isi dropdown kategori
+  const catSelect = document.getElementById('editProdCat');
+  catSelect.innerHTML = adminCategories.map(c => `<option value="${c.id}" ${c.id === p.catId ? 'selected' : ''}>${c.name}</option>`).join('');
+
+  document.getElementById('editProdUnit').value = p.unit;
+  document.getElementById('editProdNormalPrice').value = p.normalPrice;
+  document.getElementById('editProdPrice').value = p.price;
+  document.getElementById('editProdStock').value = p.stock;
+  document.getElementById('editProdMinStock').value = p.minStock;
+  document.getElementById('editProdStatus').value = p.status !== undefined ? p.status : 1;
+
+  // Foto Produk
+  document.getElementById('editProdPreview').src = p.image || 'assets/images/placeholder.svg';
+  document.getElementById('editProdImgData').value = p.image || 'assets/images/placeholder.svg';
+  document.getElementById('editProdFile').value = '';
+  document.getElementById('editProdPreset').value = '';
+
+  document.getElementById('modalEditProduct').classList.add('active');
+}
+
+// Simpan Perubahan Produk & Foto Baru
+function submitEditProduct() {
+  const id = parseInt(document.getElementById('editProdId').value);
+  const p = adminProducts.find(x => x.id === id);
+  if (!p) return;
+
+  const newName = document.getElementById('editProdName').value.trim();
+  const catId = parseInt(document.getElementById('editProdCat').value);
+  const cat = adminCategories.find(c => c.id === catId);
+  const unit = document.getElementById('editProdUnit').value;
+  const normalPrice = parseFloat(document.getElementById('editProdNormalPrice').value);
+  const price = parseFloat(document.getElementById('editProdPrice').value);
+  const newStock = parseInt(document.getElementById('editProdStock').value);
+  const minStock = parseInt(document.getElementById('editProdMinStock').value) || 0;
+  const status = parseInt(document.getElementById('editProdStatus').value);
+  const newImage = document.getElementById('editProdImgData').value;
+
+  // Catat riwayat jika stok berubah
+  if (p.stock !== newStock) {
+    const diff = newStock - p.stock;
+    stockMovements.unshift({
+      time: 'Baru saja',
+      product: newName,
+      sku: p.sku,
+      type: diff > 0 ? 'Penambahan Stok' : 'Pengurangan Stok',
+      change: (diff > 0 ? '+' : '') + diff,
+      before: p.stock,
+      after: newStock,
+      note: 'Penyesuaian stok saat edit produk',
+      admin: 'Administrator'
+    });
+  }
+
+  // Perbarui data produk
+  p.name = newName;
+  p.catId = catId;
+  p.catName = cat ? cat.name : p.catName;
+  p.unit = unit;
+  p.normalPrice = normalPrice;
+  p.price = price;
+  p.stock = newStock;
+  p.minStock = minStock;
+  p.status = status;
+  p.image = newImage; // Foto produk yang baru (dataURL base64 / path)
+
+  saveProductsToStorage();
+  closeModal('modalEditProduct');
+  renderProductsTable();
+  renderDashboardOverview();
+  renderStockView();
+  alert(`Perubahan untuk "${p.name}" dan fotonya berhasil disimpan!`);
+}
+
+function deleteProduct(id) {
+  if (confirm('Apakah Anda yakin ingin menghapus produk ini? Produk akan diarsipkan dengan aman tanpa merusak riwayat transaksi pesanan.')) {
+    adminProducts = adminProducts.filter(p => p.id !== id);
+    saveProductsToStorage();
+    renderProductsTable();
+    renderDashboardOverview();
+  }
+}
+
+// Simpan ke LocalStorage agar saat browser direfresh foto dan produk tetap tersimpan
+function saveProductsToStorage() {
+  try {
+    localStorage.setItem('JAWAMART_PRODUCTS', JSON.stringify(adminProducts));
+  } catch(e) {
+    console.error('Storage full or error:', e);
+  }
+}
+
+function loadProductsFromStorage() {
+  const REAL_PHOTO_VERSION = "v3.0_real_jpg_clean";
+  try {
+    const currentVer = localStorage.getItem('JAWAMART_PHOTO_VER');
+    const saved = localStorage.getItem('JAWAMART_PRODUCTS');
+    let parsed = [];
+    if (saved) {
+      parsed = JSON.parse(saved);
+    }
+    
+    // Deteksi jika masih ada gambar baju / svg lama
+    const hasOldSvgOrDress = !parsed || parsed.length === 0 || parsed.some(p => !p.image || p.image.endsWith('.svg') || p.image.includes('data:image'));
+
+    if (currentVer !== REAL_PHOTO_VERSION || hasOldSvgOrDress) {
+      adminProducts = [...defaultAdminProducts];
+      localStorage.setItem('JAWAMART_PRODUCTS', JSON.stringify(adminProducts));
+      localStorage.setItem('JAWAMART_PHOTO_VER', REAL_PHOTO_VERSION);
+    } else {
+      adminProducts = parsed;
+    }
+  } catch(e) {
+    adminProducts = [...defaultAdminProducts];
+  }
+}
+
+function forceResetAdminProducts() {
+  localStorage.removeItem('JAWAMART_PRODUCTS');
+  localStorage.setItem('JAWAMART_PHOTO_VER', 'v3.0_real_jpg_clean');
+  adminProducts = [...defaultAdminProducts];
+  localStorage.setItem('JAWAMART_PRODUCTS', JSON.stringify(adminProducts));
+  renderProductsTable();
+  alert('Foto produk sembako asli JAWA MART berhasil dimuat ulang dan diperbarui!');
+}
+
+// 3. Categories Table
+function renderCategoriesTable() {
+  const tbody = document.getElementById('categoriesTableBody');
+  tbody.innerHTML = adminCategories.map(c => `
+    <tr>
+      <td style="width: 44px;"><img src="${c.image}" style="width: 40px; height: 40px; object-fit: contain; border-radius: 50%; background: #e8f5e9; padding: 4px;"></td>
+      <td style="font-weight: 700; color: #1e293b;">${c.name}</td>
+      <td><code>${c.slug}</code></td>
+      <td style="color: #64748b; font-size: 13px;">${c.desc}</td>
+      <td><span style="font-weight: 700; color: #198754;">${adminProducts.filter(p => p.catId === c.id).length}</span> produk</td>
+      <td style="text-align: right;">
+        <button class="btn btn-secondary btn-sm" onclick="alert('Kategori sembako dapat diubah namanya.')">Edit</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openAddCategoryModal() {
+  const name = prompt('Masukkan nama kategori sembako baru:');
+  if (name) {
+    adminCategories.push({
+      id: adminCategories.length + 1,
+      name: name,
+      slug: name.toLowerCase().replace(/\s+/g, '-'),
+      desc: 'Kategori kebutuhan sembako',
+      image: 'assets/images/placeholder.svg',
+      count: 0
+    });
+    renderCategoriesTable();
+  }
+}
+
+// 4. Stock & Movements
+function renderStockView() {
+  const overviewBody = document.getElementById('stockOverviewTableBody');
+  overviewBody.innerHTML = adminProducts.map(p => `
+    <tr>
+      <td><code>${p.sku}</code></td>
+      <td style="font-weight: 700;">${p.name}</td>
+      <td><strong style="color: ${p.stock <= p.minStock ? '#b45309' : '#198754'}; font-size: 15px;">${p.stock}</strong> ${p.unit}</td>
+      <td>${p.minStock} ${p.unit}</td>
+      <td>
+        ${p.stock <= 0 
+          ? '<span class="status-badge badge-dibatalkan">Habis</span>' 
+          : (p.stock <= p.minStock ? '<span class="status-badge badge-menunggu-konfirmasi">Menipis</span>' : '<span class="status-badge badge-selesai">Aman</span>')}
+      </td>
+      <td style="text-align: right;">
+        <button class="btn btn-secondary btn-sm" onclick="openAdjustStockModal(${p.id})">Atur Stok &rarr;</button>
+      </td>
+    </tr>
+  `).join('');
+
+  const movBody = document.getElementById('stockMovementsTableBody');
+  movBody.innerHTML = stockMovements.map(m => `
+    <tr>
+      <td style="color: #64748b; font-size: 12px;">${m.time}</td>
+      <td><strong>${m.product}</strong></td>
+      <td><span class="status-badge" style="background:#e2e8f0; color:#1e293b;">${m.type}</span></td>
+      <td><strong style="color: ${m.change.startsWith('+') ? '#198754' : '#dc3545'}; font-size: 14px;">${m.change}</strong></td>
+      <td style="color: #64748b;">${m.before}</td>
+      <td><strong style="color: #198754;">${m.after}</strong></td>
+      <td style="font-size: 12.5px; color: #475569;">${m.note}</td>
+      <td style="font-size: 12px; color: #64748b;">${m.admin}</td>
+    </tr>
+  `).join('');
+}
+
+function openAdjustStockModal(selectedId = 0) {
+  const select = document.getElementById('adjProdSelect');
+  select.innerHTML = adminProducts.map(p => `
+    <option value="${p.id}" ${p.id === selectedId ? 'selected' : ''}>
+      ${p.name} (Stok: ${p.stock} ${p.unit})
+    </option>
+  `).join('');
+  document.getElementById('modalAdjustStock').classList.add('active');
+}
+
+function submitStockAdjustment() {
+  const pid = parseInt(document.getElementById('adjProdSelect').value);
+  const p = adminProducts.find(x => x.id === pid);
+  if (!p) return;
+
+  const type = document.getElementById('adjType').value;
+  const qty = parseInt(document.getElementById('adjQty').value);
+  const note = document.getElementById('adjNote').value || 'Penyesuaian stok manual administrator';
+
+  const before = p.stock;
+  let after = before;
+  let typeLabel = '';
+  let changeStr = '';
+
+  if (type === 'add') {
+    after = before + qty;
+    typeLabel = 'Penambahan Stok';
+    changeStr = '+' + qty;
+  } else if (type === 'subtract') {
+    if (qty > before) {
+      alert(`Pengurangan (${qty}) melebihi stok yang ada (${before}).`);
+      return;
+    }
+    after = before - qty;
+    typeLabel = 'Pengurangan Stok';
+    changeStr = '-' + qty;
+  } else if (type === 'set') {
+    after = qty;
+    typeLabel = 'Penyesuaian Stok (Opname)';
+    changeStr = (after >= before ? '+' : '-') + Math.abs(after - before);
+  }
+
+  p.stock = after;
+  stockMovements.unshift({
+    time: 'Baru saja',
+    product: p.name,
+    sku: p.sku,
+    type: typeLabel,
+    change: changeStr,
+    before: before,
+    after: after,
+    note: note,
+    admin: 'Administrator'
+  });
+
+  closeModal('modalAdjustStock');
+  renderStockView();
+  alert(`Stok "${p.name}" berhasil diubah menjadi ${after} ${p.unit}!`);
+}
+
+// 5. Orders Table
+function renderOrdersTable() {
+  const tbody = document.getElementById('ordersTableBody');
+  tbody.innerHTML = adminOrders.map(o => `
+    <tr>
+      <td><a href="javascript:void(0)" onclick="openOrderDetail(${o.id})" style="font-weight: 800; color: #198754; font-size: 14px;">${o.code}</a></td>
+      <td><strong>${o.customer}</strong><br><small style="color: #64748b;">${o.address}</small></td>
+      <td><a href="https://wa.me/62${o.phone.replace(/^0/,'')}" target="_blank" style="color: #25d366; font-weight: 700;">ðŸ’¬ ${o.phone}</a></td>
+      <td><strong style="color: #198754; font-size: 15px;">${formatRupiah(o.total)}</strong></td>
+      <td><span class="status-badge ${getStatusBadgeClass(o.status)}">${o.status}</span></td>
+      <td style="color: #64748b; font-size: 12px;">${o.date}</td>
+      <td style="text-align: right;">
+        <button class="btn btn-primary btn-sm" onclick="openOrderDetail(${o.id})">Kelola &rarr;</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+let activeOrderId = null;
+function openOrderDetail(id) {
+  const o = adminOrders.find(x => x.id === id);
+  if (!o) return;
+  activeOrderId = id;
+
+  document.getElementById('modOrderCode').textContent = `Pesanan: ${o.code}`;
+  document.getElementById('modOrderBody').innerHTML = `
+    <div style="font-size: 13.5px; line-height: 1.6; margin-bottom: 16px;">
+      <div><strong>Nama Pembeli:</strong> ${o.customer}</div>
+      <div><strong>WhatsApp:</strong> <a href="https://wa.me/62${o.phone.replace(/^0/,'')}" target="_blank" style="color:#25d366; font-weight:bold;">ðŸ’¬ ${o.phone}</a></div>
+      <div><strong>Alamat Tujuan:</strong> ${o.address}</div>
+      <div><strong>Waktu Order:</strong> ${o.date}</div>
+    </div>
+
+    <table class="admin-table" style="margin-bottom: 16px;">
+      <thead>
+        <tr>
+          <th>Nama Barang</th>
+          <th>Kuantitas</th>
+          <th style="text-align: right;">Harga Satuan</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${o.items.map(it => `
+          <tr>
+            <td><strong>${it.name}</strong></td>
+            <td>${it.qty}</td>
+            <td style="text-align: right;">${formatRupiah(it.price)}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+
+    <div style="border-top: 1px dashed #cbd5e1; padding-top: 10px; font-size: 14px;">
+      <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+        <span>Subtotal:</span><strong>${formatRupiah(o.subtotal)}</strong>
+      </div>
+      <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+        <span>Ongkos Kirim:</span><strong>${o.shipping === 0 ? 'GRATIS' : formatRupiah(o.shipping)}</strong>
+      </div>
+      <div style="display:flex; justify-content:space-between; font-size: 17px; font-weight:800; color:#198754; border-top:1px solid #e2e8f0; padding-top:6px;">
+        <span>Total Tagihan:</span><span>${formatRupiah(o.total)}</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; background: #f8fafc; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+      <label class="form-label">Ubah Status Pesanan:</label>
+      <select id="modalStatusSelect" class="form-control">
+        <option value="Menunggu Konfirmasi" ${o.status === 'Menunggu Konfirmasi' ? 'selected' : ''}>Menunggu Konfirmasi</option>
+        <option value="Dikonfirmasi" ${o.status === 'Dikonfirmasi' ? 'selected' : ''}>Dikonfirmasi</option>
+        <option value="Diproses" ${o.status === 'Diproses' ? 'selected' : ''}>Diproses</option>
+        <option value="Dalam Pengiriman" ${o.status === 'Dalam Pengiriman' ? 'selected' : ''}>Dalam Pengiriman</option>
+        <option value="Selesai" ${o.status === 'Selesai' ? 'selected' : ''}>Selesai</option>
+        <option value="Dibatalkan" ${o.status === 'Dibatalkan' ? 'selected' : ''}>Dibatalkan</option>
+      </select>
+      <small style="color: #64748b; margin-top: 4px; display: block;">
+        â„¹ï¸ <strong>Aturan Stok Atomik (PRD 5.5):</strong> Mengonfirmasi pesanan otomatis memotong stok gudang. Membatalkan pesanan otomatis mengembalikan stok.
+      </small>
+    </div>
+  `;
+
+  document.getElementById('btnUpdateOrderStatus').onclick = () => {
+    const newSt = document.getElementById('modalStatusSelect').value;
+    o.status = newSt;
+
+    // Simulate atomic stock deduction / restoration
+    if (['Dikonfirmasi', 'Diproses', 'Dalam Pengiriman', 'Selesai'].includes(newSt) && !o.stockDeducted) {
+      o.items.forEach(it => {
+        const p = adminProducts.find(x => x.name.toLowerCase().includes(it.name.toLowerCase().substring(0, 10)));
+        if (p && p.stock >= it.qty) {
+          p.stock -= it.qty;
+          stockMovements.unshift({
+            time: 'Baru saja',
+            product: p.name,
+            sku: p.sku,
+            type: 'Pengurangan karena Pesanan',
+            change: '-' + it.qty,
+            before: p.stock + it.qty,
+            after: p.stock,
+            note: `Pengurangan otomatis untuk pesanan #${o.code}`,
+            admin: 'Sistem'
+          });
+        }
+      });
+      o.stockDeducted = true;
+    } else if (newSt === 'Dibatalkan' && o.stockDeducted) {
+      o.items.forEach(it => {
+        const p = adminProducts.find(x => x.name.toLowerCase().includes(it.name.toLowerCase().substring(0, 10)));
+        if (p) {
+          p.stock += it.qty;
+          stockMovements.unshift({
+            time: 'Baru saja',
+            product: p.name,
+            sku: p.sku,
+            type: 'Pengembalian karena Pembatalan',
+            change: '+' + it.qty,
+            before: p.stock - it.qty,
+            after: p.stock,
+            note: `Pengembalian stok pembatalan pesanan #${o.code}`,
+            admin: 'Sistem'
+          });
+        }
+      });
+      o.stockDeducted = false;
+    }
+
+    closeModal('modalOrderDetail');
+    renderOrdersTable();
+    renderDashboardOverview();
+    alert(`Status pesanan #${o.code} berhasil diperbarui menjadi "${newSt}".`);
+  };
+
+  document.getElementById('modalOrderDetail').classList.add('active');
+}
+
+// 6. Reports View
+function renderReportsView() {
+  const topBody = document.getElementById('topSellingTableBody');
+  topBody.innerHTML = `
+    <tr>
+      <td><strong>Beras Premium Ramos Wangi 5 Kg</strong></td>
+      <td><code>BR-PRM-005</code></td>
+      <td style="text-align: center;"><strong style="color: #198754; font-size: 15px;">24</strong> Karung</td>
+      <td style="text-align: right; font-weight: 700;">${formatRupiah(1668000)}</td>
+    </tr>
+    <tr>
+      <td><strong>Minyak Goreng Sawit 2 Liter</strong></td>
+      <td><code>MY-BIM-002</code></td>
+      <td style="text-align: center;"><strong style="color: #198754; font-size: 15px;">18</strong> Pcs</td>
+      <td style="text-align: right; font-weight: 700;">${formatRupiah(621000)}</td>
+    </tr>
+    <tr>
+      <td><strong>Telur Ayam Negeri Fresh 1 Kg</strong></td>
+      <td><code>TL-AYM-001</code></td>
+      <td style="text-align: center;"><strong style="color: #198754; font-size: 15px;">15</strong> Kg</td>
+      <td style="text-align: right; font-weight: 700;">${formatRupiah(420000)}</td>
+    </tr>
+  `;
+}
+
+function exportCsvReport() {
+  let csv = "Kode Pesanan,Nama Pelanggan,No WhatsApp,Alamat,Total Tagihan,Status,Waktu\n";
+  adminOrders.forEach(o => {
+    csv += `"${o.code}","${o.customer}","${o.phone}","${o.address.replace(/"/g, '""')}","${o.total}","${o.status}","${o.date}"\n`;
+  });
+
+  const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Laporan-Penjualan-JAWAMART.csv`;
+  a.click();
+}
+
+// ==========================================
+// KELOLA BANNER PROMOSI (CRUD LENGKAP)
+// ==========================================
+function renderBannersTable() {
+  const tbody = document.getElementById('bannersTableBody');
+  if (!tbody) return;
+
+  // Urutkan berdasarkan kolom order
+  const sortedBanners = [...adminBanners].sort((a, b) => a.order - b.order);
+
+  if (sortedBanners.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 24px; color: #64748b;">
+          Belum ada banner promosi. Klik <strong>+ Tambah Banner Baru</strong> untuk menambahkan.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = sortedBanners.map(b => `
+    <tr>
+      <td><strong>${b.order}</strong></td>
+      <td>
+        <img src="${b.image}" style="width: 130px; height: 50px; object-fit: cover; border-radius: 6px; border: 1.5px solid #cbd5e1; background: #0f172a;" onerror="this.src='uploads/banners/banner-1.svg'">
+      </td>
+      <td>
+        <div style="font-weight: 700; color: #1e293b; font-size: 13.5px;">${b.title}</div>
+        <div style="font-size: 12px; color: #64748b; margin-top: 2px;">${b.desc || '-'}</div>
+      </td>
+      <td>
+        <div style="font-weight: 600; font-size: 13px; color: #198754;">${b.btnText}</div>
+        <div style="font-size: 11px; color: #64748b;"><code>${b.btnLink}</code></div>
+      </td>
+      <td>
+        ${b.status === 1 
+          ? '<span class="status-badge badge-active">Aktif</span>' 
+          : '<span class="status-badge badge-dibatalkan">Nonaktif</span>'}
+      </td>
+      <td style="text-align: right; white-space: nowrap;">
+        <button class="btn btn-secondary btn-sm" onclick="openEditBannerModal(${b.id})" title="Edit banner ini" style="font-weight: 600;">
+          âœï¸ Edit
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="deleteBanner(${b.id})" title="Hapus banner ini" style="font-weight: 600;">
+          ðŸ—‘ï¸ Hapus
+        </button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function openAddBannerModal() {
+  document.getElementById('newBannerTitle').value = '';
+  document.getElementById('newBannerDesc').value = '';
+  document.getElementById('newBannerBtnText').value = 'Belanja Sekarang';
+  document.getElementById('newBannerBtnLink').value = '#katalog';
+  document.getElementById('newBannerOrder').value = adminBanners.length + 1;
+  document.getElementById('newBannerStatus').value = '1';
+  document.getElementById('newBannerPreview').src = 'uploads/banners/banner-1.svg';
+  document.getElementById('newBannerImgData').value = 'uploads/banners/banner-1.svg';
+  document.getElementById('newBannerFile').value = '';
+  document.getElementById('newBannerPreset').value = 'uploads/banners/banner-1.svg';
+
+  document.getElementById('modalAddBanner').classList.add('active');
+}
+
+function submitNewBanner() {
+  const title = document.getElementById('newBannerTitle').value.trim();
+  if (!title) {
+    alert('Judul banner promosi wajib diisi!');
+    return;
+  }
+
+  const desc = document.getElementById('newBannerDesc').value.trim();
+  const btnText = document.getElementById('newBannerBtnText').value.trim() || 'Belanja Sekarang';
+  const btnLink = document.getElementById('newBannerBtnLink').value.trim() || '#katalog';
+  const order = parseInt(document.getElementById('newBannerOrder').value) || (adminBanners.length + 1);
+  const status = parseInt(document.getElementById('newBannerStatus').value);
+  const image = document.getElementById('newBannerImgData').value || 'uploads/banners/banner-1.svg';
+
+  const newId = Date.now();
+  adminBanners.push({
+    id: newId,
+    order: order,
+    title: title,
+    desc: desc,
+    btnText: btnText,
+    btnLink: btnLink,
+    image: image,
+    status: status
+  });
+
+  saveBannersToStorage();
+  closeModal('modalAddBanner');
+  renderBannersTable();
+  alert(`Banner promosi "${title}" berhasil ditambahkan!`);
+}
+
+function openEditBannerModal(id) {
+  const b = adminBanners.find(x => x.id === id);
+  if (!b) return;
+
+  document.getElementById('editBannerId').value = b.id;
+  document.getElementById('editBannerTitle').value = b.title;
+  document.getElementById('editBannerDesc').value = b.desc || '';
+  document.getElementById('editBannerBtnText').value = b.btnText;
+  document.getElementById('editBannerBtnLink').value = b.btnLink;
+  document.getElementById('editBannerOrder').value = b.order;
+  document.getElementById('editBannerStatus').value = b.status !== undefined ? b.status : 1;
+  
+  // Gambar
+  document.getElementById('editBannerPreview').src = b.image || 'uploads/banners/banner-1.svg';
+  document.getElementById('editBannerImgData').value = b.image || 'uploads/banners/banner-1.svg';
+  document.getElementById('editBannerFile').value = '';
+  document.getElementById('editBannerPreset').value = '';
+
+  document.getElementById('modalEditBanner').classList.add('active');
+}
+
+function submitEditBanner() {
+  const id = parseInt(document.getElementById('editBannerId').value);
+  const b = adminBanners.find(x => x.id === id);
+  if (!b) return;
+
+  const title = document.getElementById('editBannerTitle').value.trim();
+  if (!title) {
+    alert('Judul banner promosi wajib diisi!');
+    return;
+  }
+
+  b.title = title;
+  b.desc = document.getElementById('editBannerDesc').value.trim();
+  b.btnText = document.getElementById('editBannerBtnText').value.trim() || 'Belanja Sekarang';
+  b.btnLink = document.getElementById('editBannerBtnLink').value.trim() || '#katalog';
+  b.order = parseInt(document.getElementById('editBannerOrder').value) || 1;
+  b.status = parseInt(document.getElementById('editBannerStatus').value);
+  
+  const newImg = document.getElementById('editBannerImgData').value;
+  if (newImg) {
+    b.image = newImg;
+  }
+
+  saveBannersToStorage();
+  closeModal('modalEditBanner');
+  renderBannersTable();
+  alert(`Perubahan banner "${b.title}" berhasil disimpan!`);
+}
+
+function deleteBanner(id) {
+  const b = adminBanners.find(x => x.id === id);
+  const title = b ? b.title : 'banner';
+  if (confirm(`Apakah Anda yakin ingin menghapus banner promosi:\n"${title}"?`)) {
+    adminBanners = adminBanners.filter(x => x.id !== id);
+    saveBannersToStorage();
+    renderBannersTable();
+    alert('Banner promosi berhasil dihapus!');
+  }
+}
+
+function saveBannersToStorage() {
+  try {
+    localStorage.setItem('JAWAMART_BANNERS', JSON.stringify(adminBanners));
+  } catch(e) {
+    console.error('Error saving banners to storage:', e);
+  }
+}
+
+function loadBannersFromStorage() {
+  try {
+    const saved = localStorage.getItem('JAWAMART_BANNERS');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        adminBanners = parsed;
+      }
+    }
+  } catch(e) {
+    console.error('Error loading banners from storage:', e);
+  }
+}
+
+// 7. Settings
+function saveSettings() {
+  const wa = document.getElementById('settingWaNumber').value.trim();
+  alert(`Pengaturan toko berhasil diperbarui! Seluruh tombol WhatsApp di website sekarang menggunakan nomor: ${wa}`);
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+// Autentikasi & Sembunyikan/Kunci Dashboard Admin
+function submitAdminLogin() {
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value.trim();
+
+  if (u === 'admin' && p === 'admin123') {
+    sessionStorage.setItem('JAWAMART_ADMIN_LOGGED_IN', 'true');
+    document.getElementById('adminLoginScreen').style.display = 'none';
+    document.getElementById('adminAppWrapper').style.display = 'flex';
+    renderDashboardOverview();
+  } else {
+    alert('Nama pengguna atau kata sandi administrator salah!\n(Default: admin / admin123)');
+  }
+}
+
+function lockAndHideDashboard() {
+  sessionStorage.removeItem('JAWAMART_ADMIN_LOGGED_IN');
+  document.getElementById('adminAppWrapper').style.display = 'none';
+  document.getElementById('adminLoginScreen').style.display = 'flex';
+  alert('Dashboard administrator telah berhasil dikunci dan disembunyikan!');
+}
+
+function toggleSidebarHide() {
+  const wrapper = document.getElementById('adminAppWrapper');
+  const btn = document.getElementById('btnToggleSidebar');
+  wrapper.classList.toggle('sidebar-hidden');
+  if (wrapper.classList.contains('sidebar-hidden')) {
+    btn.innerHTML = '<span>ðŸ“‚ Tampilkan Sidebar</span>';
+  } else {
+    btn.innerHTML = '<span>ðŸ“ Sembunyikan Sidebar</span>';
+  }
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  loadProductsFromStorage();
+  loadBannersFromStorage();
+  
+  // Cek apakah admin sudah login sebelumnya di sesi browser ini
+  if (sessionStorage.getItem('JAWAMART_ADMIN_LOGGED_IN') === 'true') {
+    document.getElementById('adminLoginScreen').style.display = 'none';
+    document.getElementById('adminAppWrapper').style.display = 'flex';
+    renderDashboardOverview();
+  } else {
+    document.getElementById('adminLoginScreen').style.display = 'flex';
+    document.getElementById('adminAppWrapper').style.display = 'none';
+  }
+});
+</script>
+</body>
+</html>
